@@ -9,18 +9,12 @@ Board::Board(int width, int height){
     b_width = width;
 }
 
-void Board::initBoard() {
 
-}
-
-bool Board::makeMove() {
-    return false;
-}
-
-void Board::run() {
-
-}
-
-Piece *Board::getPiece(Position p) const {
+Piece* Board::getPiece(Position p) {
+    for (auto i = b_pieces.begin(); i != b_pieces.end(); ++i){
+        if(i->p.equals(p))
+            return &(*i);
+    }
     return nullptr;
+
 }

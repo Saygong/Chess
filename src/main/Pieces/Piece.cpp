@@ -13,7 +13,12 @@ int Piece::validMove(Position start, Position end) {
 }
 
 
-Piece::Piece(bool own, string name) {
+Piece::Piece(bool own, string name, Position p) {
+    this->p = p;
     owner = own;
     this->name= name;
+}
+
+string Piece::toString() const {
+    return "Piece: " + this->name;
 }

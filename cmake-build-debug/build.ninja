@@ -67,6 +67,18 @@ build CMakeFiles/Chess.dir/src/main/Board/ChessBoard/ChessBoard.cpp.obj: CXX_COM
   OBJECT_DIR = CMakeFiles\Chess.dir
   OBJECT_FILE_DIR = CMakeFiles\Chess.dir\src\main\Board\ChessBoard
 
+build CMakeFiles/Chess.dir/src/main/Position/Position.cpp.obj: CXX_COMPILER__Chess_Debug C$:/Users/andre/OneDrive/Desktop/Progetti/Chess/src/main/Position/Position.cpp || cmake_object_order_depends_target_Chess
+  DEP_FILE = CMakeFiles\Chess.dir\src\main\Position\Position.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\Chess.dir
+  OBJECT_FILE_DIR = CMakeFiles\Chess.dir\src\main\Position
+
+build CMakeFiles/Chess.dir/src/main/Pieces/Piece.cpp.obj: CXX_COMPILER__Chess_Debug C$:/Users/andre/OneDrive/Desktop/Progetti/Chess/src/main/Pieces/Piece.cpp || cmake_object_order_depends_target_Chess
+  DEP_FILE = CMakeFiles\Chess.dir\src\main\Pieces\Piece.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\Chess.dir
+  OBJECT_FILE_DIR = CMakeFiles\Chess.dir\src\main\Pieces
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Chess
@@ -75,7 +87,7 @@ build CMakeFiles/Chess.dir/src/main/Board/ChessBoard/ChessBoard.cpp.obj: CXX_COM
 #############################################
 # Link the executable Chess.exe
 
-build Chess.exe: CXX_EXECUTABLE_LINKER__Chess_Debug CMakeFiles/Chess.dir/src/main.cpp.obj CMakeFiles/Chess.dir/src/main/Board/Board.cpp.obj CMakeFiles/Chess.dir/src/main/Board/ChessBoard/ChessBoard.cpp.obj
+build Chess.exe: CXX_EXECUTABLE_LINKER__Chess_Debug CMakeFiles/Chess.dir/src/main.cpp.obj CMakeFiles/Chess.dir/src/main/Board/Board.cpp.obj CMakeFiles/Chess.dir/src/main/Board/ChessBoard/ChessBoard.cpp.obj CMakeFiles/Chess.dir/src/main/Position/Position.cpp.obj CMakeFiles/Chess.dir/src/main/Pieces/Piece.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Chess.dir

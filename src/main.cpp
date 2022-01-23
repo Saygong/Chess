@@ -6,20 +6,20 @@
 #include "main/Pieces/Piece.h"
 #include "main/Board/Board.h"
 #include "main/Board/ChessBoard/ChessBoard.h"
-#include "main/Utilities/idGenerator.cpp"
-
+#include "main/Position/Position.h"
 using namespace std;
 
-int count();
 
 int main(){
-    cout<< "Hello World!";
 
-    ChessBoard* board = new ChessBoard();
+    auto* board = new ChessBoard();
 
     board->initBoard();
-    board->run();
+    Piece* a = board->getPiece(Position('D', 7));
+    cout<< a->toString() << endl;
 
+    a = board->getPiece(Position('D', 1));
+    cout<< a->toString() << endl;
 
     return 0;
 }

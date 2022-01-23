@@ -22,7 +22,11 @@ public:
 
 };
 
-class Position : public std::pair {
+
+/**
+ * Class that represent the position of a piece while on the board
+ */
+class Position {
 
 private:
     Tuple<int, int> real_coord;
@@ -31,8 +35,20 @@ private:
 public:
     Position();
     Position(char col, int row);
+
+    /**
+     * Coordinate express by a tuple<char, int>
+     * The char represents the column and the integer represents the row
+     */
     Tuple<char, int> ideal_coord;
     Tuple<int, int> getRealCoord();
+
+    /**
+     * Method that compares two positions
+     * @param p
+     * @return true if positions are equals, false otherwise
+     */
+    bool equals(Position p) const;
 
 };
 

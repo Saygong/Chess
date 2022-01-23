@@ -12,34 +12,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e8fd7d65-0508-4177-9cbf-41ee5bcdb890" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/Board/Board.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Board/Board.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Board/ChessBoard/ChessBoard.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Board/ChessBoard/ChessBoard.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Pieces/Rook/Rook.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Pieces/Rook/Rook.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Position/Position.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Position/Position.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Utilities/random.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cell/Cell.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cell/Cell.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pieces/Knight.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pieces/Knight.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pieces/Piece.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Pieces/Piece.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pieces/Piece.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Pieces/Piece.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Table/Table.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Table/Table.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-59007c3591e8e1f23891.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2022-01-22T21-17-26-0368.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-Chess-Debug-837c13a71d3fcd352808.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-bd930d2455f9006eb9a9.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2022-01-23T14-22-56-0956.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-Chess-Debug-8ef85542c73a526d701b.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Chess.dir/src/main.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Chess.dir/src/main.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Chess.dir/src/main/Board/Board.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Chess.dir/src/main/Board/Board.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Chess.dir/src/main/Board/ChessBoard/ChessBoard.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Chess.dir/src/main/Board/ChessBoard/ChessBoard.cpp.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Chess.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Chess.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Board/Board.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Board/Board.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Board/Board.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Board/Board.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Board/ChessBoard/ChessBoard.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Board/ChessBoard/ChessBoard.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Board/ChessBoard/ChessBoard.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Board/ChessBoard/ChessBoard.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Pieces/Piece.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Pieces/Piece.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Pieces/Piece.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Pieces/Piece.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Position/Position.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Position/Position.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Position/Position.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Position/Position.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,12 +92,12 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="Chess" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Chess" TARGET_NAME="Chess" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Chess" RUN_TARGET_NAME="Chess">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration name="Chess" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Chess" TARGET_NAME="Chess" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Chess" RUN_TARGET_NAME="Chess">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -117,6 +113,7 @@
       <updated>1642884010083</updated>
       <workItem from="1642884012537" duration="2504000" />
       <workItem from="1642931449506" duration="19415000" />
+      <workItem from="1642970450972" duration="6700000" />
     </task>
     <servers />
   </component>

@@ -13,16 +13,3 @@ A complete and good-looking chess game. Following there's the features that will
 * Coherent polymorphism
 * Save a game
 * Graphical User Interface and User Experience
-
-Chess
-|-- foo
-|   |-- some_class.hpp
-|   |-- src
-|   |   |-- internal_class.hpp
-|   |   |-- internal_class.cpp
-|   |   `-- some_class.cpp
-|   `-- test
-|       |-- internal_class_tu.cpp
-|       `-- some_class_tu.cpp
-|-- bar
-|   |-- ...

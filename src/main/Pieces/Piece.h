@@ -15,15 +15,22 @@ protected:
     bool owner;
 
 public:
-    Piece();
-    Piece(bool own, string name);
     string name;
+    Position p;
+    Piece(bool own, string name, Position p);
 
 
     /**
      *  Return 0 if the move isn't valid, 1 otherwise
      */
     virtual int validMove(Position start, Position end);
+
+    /**
+     * Provide a string representation of a piece
+     * @return string
+     */
+    string toString() const;
+
 
 
 };
