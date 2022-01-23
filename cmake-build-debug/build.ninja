@@ -49,23 +49,23 @@ cmake_ninja_workdir = C$:/Users/andre/OneDrive/Desktop/Progetti/Chess/cmake-buil
 
 build cmake_object_order_depends_target_Chess: phony || CMakeFiles/Chess.dir
 
-build CMakeFiles/Chess.dir/main.cpp.obj: CXX_COMPILER__Chess_Debug C$:/Users/andre/OneDrive/Desktop/Progetti/Chess/main.cpp || cmake_object_order_depends_target_Chess
-  DEP_FILE = CMakeFiles\Chess.dir\main.cpp.obj.d
+build CMakeFiles/Chess.dir/src/main.cpp.obj: CXX_COMPILER__Chess_Debug C$:/Users/andre/OneDrive/Desktop/Progetti/Chess/src/main.cpp || cmake_object_order_depends_target_Chess
+  DEP_FILE = CMakeFiles\Chess.dir\src\main.cpp.obj.d
   FLAGS = -g -std=gnu++14
   OBJECT_DIR = CMakeFiles\Chess.dir
-  OBJECT_FILE_DIR = CMakeFiles\Chess.dir
+  OBJECT_FILE_DIR = CMakeFiles\Chess.dir\src
 
-build CMakeFiles/Chess.dir/Table/Table.cpp.obj: CXX_COMPILER__Chess_Debug C$:/Users/andre/OneDrive/Desktop/Progetti/Chess/Table/Table.cpp || cmake_object_order_depends_target_Chess
-  DEP_FILE = CMakeFiles\Chess.dir\Table\Table.cpp.obj.d
+build CMakeFiles/Chess.dir/src/main/Board/Board.cpp.obj: CXX_COMPILER__Chess_Debug C$:/Users/andre/OneDrive/Desktop/Progetti/Chess/src/main/Board/Board.cpp || cmake_object_order_depends_target_Chess
+  DEP_FILE = CMakeFiles\Chess.dir\src\main\Board\Board.cpp.obj.d
   FLAGS = -g -std=gnu++14
   OBJECT_DIR = CMakeFiles\Chess.dir
-  OBJECT_FILE_DIR = CMakeFiles\Chess.dir\Table
+  OBJECT_FILE_DIR = CMakeFiles\Chess.dir\src\main\Board
 
-build CMakeFiles/Chess.dir/Cell/Cell.cpp.obj: CXX_COMPILER__Chess_Debug C$:/Users/andre/OneDrive/Desktop/Progetti/Chess/Cell/Cell.cpp || cmake_object_order_depends_target_Chess
-  DEP_FILE = CMakeFiles\Chess.dir\Cell\Cell.cpp.obj.d
+build CMakeFiles/Chess.dir/src/main/Board/ChessBoard/ChessBoard.cpp.obj: CXX_COMPILER__Chess_Debug C$:/Users/andre/OneDrive/Desktop/Progetti/Chess/src/main/Board/ChessBoard/ChessBoard.cpp || cmake_object_order_depends_target_Chess
+  DEP_FILE = CMakeFiles\Chess.dir\src\main\Board\ChessBoard\ChessBoard.cpp.obj.d
   FLAGS = -g -std=gnu++14
   OBJECT_DIR = CMakeFiles\Chess.dir
-  OBJECT_FILE_DIR = CMakeFiles\Chess.dir\Cell
+  OBJECT_FILE_DIR = CMakeFiles\Chess.dir\src\main\Board\ChessBoard
 
 
 # =============================================================================
@@ -75,7 +75,7 @@ build CMakeFiles/Chess.dir/Cell/Cell.cpp.obj: CXX_COMPILER__Chess_Debug C$:/User
 #############################################
 # Link the executable Chess.exe
 
-build Chess.exe: CXX_EXECUTABLE_LINKER__Chess_Debug CMakeFiles/Chess.dir/main.cpp.obj CMakeFiles/Chess.dir/Table/Table.cpp.obj CMakeFiles/Chess.dir/Cell/Cell.cpp.obj
+build Chess.exe: CXX_EXECUTABLE_LINKER__Chess_Debug CMakeFiles/Chess.dir/src/main.cpp.obj CMakeFiles/Chess.dir/src/main/Board/Board.cpp.obj CMakeFiles/Chess.dir/src/main/Board/ChessBoard/ChessBoard.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Chess.dir
