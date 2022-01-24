@@ -85,6 +85,7 @@ bool ChessBoard::makeMove() {
 }
 
 void printDiv(){
+    cout << "   ";
     for(int i = 0; i < 8; i++){
         cout <<"-- ";
     }
@@ -93,7 +94,7 @@ void printDiv(){
 
 void ChessBoard::printBoard() {
 
-    cout << "    ";
+    cout << "   ";
     for(int i = 65; i < 73; i++){
         cout <<" " <<(char)i << " ";
     }
