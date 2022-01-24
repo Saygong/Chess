@@ -30,17 +30,20 @@ class Position {
 
 private:
     Tuple<int, int> real_coord;
-    Tuple<int, int> parseCoord();
+    /**
+     * Private helper method that allow to parse logical coordinates [A-H][1-8] into real matrix coordinates [0-7][0-7]
+     * @return
+     */
+    Tuple<int, int> parseCoord() const;
 
 public:
     Position();
     Position(char col, int row);
-
     /**
      * Coordinate express by a tuple<char, int>
      * The char represents the column and the integer represents the row
      */
-    Tuple<char, int> ideal_coord;
+    Tuple<char, int> coord;
     Tuple<int, int> getRealCoord();
 
     /**
@@ -49,6 +52,14 @@ public:
      * @return true if positions are equals, false otherwise
      */
     bool equals(Position p) const;
+
+    /**
+     * Check if a position is valid. Inside the ranges [A-H] and [1-8]
+     * @return true if the position is valid, false otherwise
+     */
+    bool isValidPosition() const;
+
+
 
 };
 

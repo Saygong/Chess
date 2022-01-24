@@ -9,7 +9,6 @@
 #include "main/Position/Position.h"
 using namespace std;
 
-
 int main(){
 
     auto* board = new ChessBoard();
@@ -20,6 +19,8 @@ int main(){
 
     a = board->getPiece(Position('D', 1));
     cout<< a->toString() << endl;
+
+    board->printBoard();
 
     return 0;
 }

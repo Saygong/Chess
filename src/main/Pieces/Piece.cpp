@@ -6,10 +6,9 @@
 
 
 int Piece::validMove(Position start, Position end) {
-    Tuple<int, int> real_c = end.getRealCoord();
-    if (real_c.first < 0 || real_c.first > 8 || real_c.second < 0 || real_c.second > 8)
-        return 0;
-    return 1;
+    if (start.isValidPosition() && end.isValidPosition())
+        return 1;
+    return 0;
 }
 
 

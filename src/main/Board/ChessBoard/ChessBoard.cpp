@@ -3,6 +3,7 @@
 //
 
 
+#include <iostream>
 #include "ChessBoard.h"
 #include "../../Utilities/random.cpp"
 
@@ -47,16 +48,12 @@ void ChessBoard::createSet(bool owner){
 
 void ChessBoard::initBoard() {;
 
-    this-> player_turn = isUserWhite;
+    this-> player_turn = "white";
 
     /* Creation of the user set of pieces */
     createSet(true);
     /* Creation of the AI set of pieces */
     createSet(false);
-
-}
-
-void ChessBoard::printBoard() {
 
 }
 
@@ -66,9 +63,59 @@ int ChessBoard::check() {
 
 
 bool ChessBoard::makeMove() {
-    return false;
+    char startChar, endChar;
+    int startInt, endInt;
+    cout << "Insert coordinates [letter][number] x [letter][number]" <<endl;
+
+    cin>> startChar;
+    cin>> startInt;
+    cout<< " ";
+    cin>> endChar;
+    cin>> endInt;
+
+    // TODO add integrity check for the coordinates
+    Position start = Position(startChar, startInt);
+    Position end = Position(endChar, endInt);
+
+    Piece* p = this->getPiece(start);
+    if (p->validMove(start, end)){
+        p->p = end;
+    }
+
 }
 
+void printDiv(){
+    for(int i = 0; i < 8; i++){
+        cout <<"-- ";
+    }
+    cout<<endl;
+}
+
+void ChessBoard::printBoard() {
+
+    cout << "    ";
+    for(int i = 65; i < 73; i++){
+        cout <<" " <<(char)i << " ";
+    }
+    cout <<endl;
+
+    for(int i = 8; i > 0; i--){
+        printDiv();
+        cout << i << " ";
+        for(int j = 0; j < 8; j++){
+            cout << "|  ";
+        }
+        cout << "|" << endl;
+
+    }
+    printDiv();
+
+}
+
+
 void Board::run() {
+
+
+
 
 }

@@ -16,7 +16,7 @@ class ChessBoard: public Board {
 
 private:
     /**
-     * Private helping method to set the pieces
+     * Private helper method to set the pieces
      * @param owner
      */
     void createSet(bool owner);
@@ -32,15 +32,19 @@ public:
 
     /** Display the chessboard in terminal. */
     void printBoard();
+
     /** Return 0 if White is checked, 1 if Black is checked, -1 if neither. */
     int check();
+
     /** Return 1 if a stalemate is reached, 0 if not. */
     int Stalemate();
+
     /** Return 1 if a checkmate is reached, 0 if not. */
     bool checkMate(int status);
 
-    bool makeMove() override;
 
+
+    bool makeMove() override;
 
     void run() override{
 

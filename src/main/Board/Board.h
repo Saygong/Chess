@@ -28,9 +28,9 @@ protected:
     vector<Piece> b_pieces;
 
     /**
-     * Boolean value representing the turn of the *human* player
+     * String value representing the turn
      */
-    bool player_turn;
+    string player_turn;
 
 public:
     Board(int width, int height);
