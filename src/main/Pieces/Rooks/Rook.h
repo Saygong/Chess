@@ -5,8 +5,11 @@
 #ifndef CHESS_ROOK_H
 #define CHESS_ROOK_H
 
-#include "../Piece.h"
+#include <string>
+#include <utility>
 #include <vector>
+#include "../Piece.h"
+#include "../../Position/Position.h"
 using namespace std;
 
 

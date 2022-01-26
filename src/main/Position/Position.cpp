@@ -27,7 +27,6 @@ Tuple<int, int> Position::parseCoord() const {
 
 Tuple<char, int> Position::parseRealCoord() const {
     char char_col = (char)(this->real_coord.first + 65);
-    cout<<char_col;
     return Tuple<char, int>(char_col, (this->real_coord.second)+1);
 };
 

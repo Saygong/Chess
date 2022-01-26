@@ -91,10 +91,10 @@ void ChessBoard::makeMove() {
     Position end = Position(endChar, endInt);
 
     Piece* p = this->getPiece(start);
-    if (p->validMove(start, end)){
-        //TODO wait until validMove is implemented
-        p->p = end;
-    }
+    vector<Position>* validity = p->validMove(start, end);
+    //TODO wait until the different validMove are implemented -> implement a method that check if the path of the piece is occupied
+    // Note, the trace of a knight is empty because it's the only piece that can jump over other pieces
+
 
 
 }

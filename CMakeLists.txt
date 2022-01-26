@@ -9,7 +9,7 @@ set(Headers
         src/main/Position/Position.h
         src/main/Pieces/Piece.h
         src/main/Pieces/Rooks/Rook.h
-        )
+        src/main/Pieces/Bishops/Bishop.cpp src/main/Pieces/Bishops/Bishop.h)
 set(Sources
         src/main.cpp
         src/main/Board/Board.cpp
@@ -17,6 +17,6 @@ set(Sources
         src/main/Position/Position.cpp
         src/main/Pieces/Piece.cpp
         src/main/Pieces/Rooks/Rook.cpp
-        )
+        src/main/Pieces/Knights/Knight.cpp src/main/Pieces/Knights/Knight.h src/main/Pieces/Bishops/Bishop.cpp src/main/Pieces/Bishops/Bishop.h src/main/Utilities/min_max.cpp)
 
 add_executable(Chess ${Sources} ${Headers})
