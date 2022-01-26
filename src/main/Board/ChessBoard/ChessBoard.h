@@ -43,8 +43,9 @@ public:
     bool checkMate(int status);
 
 
+    bool allowedMove(vector<Position> a) override;
 
-    bool makeMove() override;
+    void makeMove() override;
 
     void run() override{
 

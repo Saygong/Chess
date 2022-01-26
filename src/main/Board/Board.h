@@ -50,9 +50,14 @@ public:
 
     /**
      * Allow user to make a move
-     * @return
      */
-    virtual bool makeMove()=0;
+    virtual void makeMove()=0;
+
+    /**
+     * Check if a move is allowed in the board
+     * @return true if the move is allowed, false otherwise
+     */
+    virtual bool allowedMove(vector<Position> a)=0;
 
     /**
      * Main game loop, every derived class will implements its own game logic

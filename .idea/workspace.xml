@@ -13,7 +13,17 @@
   <component name="ChangeListManager">
     <list default="true" id="e8fd7d65-0508-4177-9cbf-41ee5bcdb890" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Board/Board.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Board/Board.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Board/ChessBoard/ChessBoard.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Board/ChessBoard/ChessBoard.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Board/ChessBoard/ChessBoard.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Board/ChessBoard/ChessBoard.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Pieces/Piece.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Pieces/Piece.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Pieces/Piece.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Pieces/Piece.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Pieces/Rooks/Rook.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Pieces/Rooks/Rook.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Pieces/Rooks/Rook.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Pieces/Rooks/Rook.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Position/Position.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Position/Position.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Position/Position.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Position/Position.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +105,10 @@
       <workItem from="1642931449506" duration="19415000" />
       <workItem from="1642970450972" duration="6700000" />
       <workItem from="1643029367737" duration="300000" />
-      <workItem from="1643029680491" duration="55000" />
+      <workItem from="1643029680491" duration="319000" />
+      <workItem from="1643043800222" duration="1318000" />
+      <workItem from="1643204223385" duration="5172000" />
+      <workItem from="1643209495464" duration="4863000" />
     </task>
     <servers />
   </component>

@@ -61,15 +61,28 @@ int ChessBoard::check() {
     return 0;
 }
 
+int min(int a, int b){
+    return a > b ? b : a;
+}
+int max(int a, int b){
+    return a < b ? b : a;
+}
 
-bool ChessBoard::makeMove() {
+
+bool ChessBoard::allowedMove(vector<Position> trace) {
+    //TODO
+
+    return true;
+}
+
+
+void ChessBoard::makeMove() {
     char startChar, endChar;
     int startInt, endInt;
     cout << "Insert coordinates [letter][number] x [letter][number]" <<endl;
 
     cin>> startChar;
     cin>> startInt;
-    cout<< " ";
     cin>> endChar;
     cin>> endInt;
 
@@ -79,8 +92,10 @@ bool ChessBoard::makeMove() {
 
     Piece* p = this->getPiece(start);
     if (p->validMove(start, end)){
+        //TODO wait until validMove is implemented
         p->p = end;
     }
+
 
 }
 

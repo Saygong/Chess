@@ -6,6 +6,7 @@
 #define CHESS_PIECE_H
 
 #include<string>
+#include<vector>
 #include "../Position/Position.h"
 using namespace std;
 
@@ -21,9 +22,10 @@ public:
 
 
     /**
-     *  Return 0 if the move isn't valid, 1 otherwise
+     *  Return a valid vector containing all the position covered by the move if the move is valid
+     *  a nullptr otherwise
      */
-    virtual int validMove(Position start, Position end);
+    virtual vector<Position>* validMove(Position start, Position end);
 
     /**
      * Provide a string representation of a piece

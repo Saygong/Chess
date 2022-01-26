@@ -5,6 +5,9 @@
 #ifndef CHESS_POSITION_H
 #define CHESS_POSITION_H
 
+#include<string>
+using namespace std;
+
 
 template<class A, class B>
 class Tuple {
@@ -36,9 +39,17 @@ private:
      */
     Tuple<int, int> parseCoord() const;
 
+    /**
+     * Private helper method that allow to parse real coordinates [0-7][0-7] into real matrix coordinates [A-H][1-8]
+     * @return
+     */
+    Tuple<char, int> parseRealCoord() const;
+
 public:
     Position();
     Position(char col, int row);
+    Position(int col, int row);
+
     /**
      * Coordinate express by a tuple<char, int>
      * The char represents the column and the integer represents the row
@@ -52,6 +63,12 @@ public:
      * @return true if positions are equals, false otherwise
      */
     bool equals(Position p) const;
+
+    /**
+     * Method that allow to represent a Position with a string
+     * @return string
+     */
+    string toString() const;
 
     /**
      * Check if a position is valid. Inside the ranges [A-H] and [1-8]

@@ -3,7 +3,7 @@
 //
 
 #include "Position.h"
-
+#include<iostream>
 
 Position::Position() {};
 
@@ -13,10 +13,22 @@ Position::Position(char col, int row){
 
 };
 
+Position::Position(int col, int row){
+    this->real_coord = Tuple<int, int>(col,row);
+    this->coord = parseRealCoord();
+
+};
+
 
 Tuple<int, int> Position::parseCoord() const {
     int int_col = (int)this->coord.first - 65;
-    return Tuple<int, int>(int_col, (this->coord.second)-1);
+    return Tuple<int, int>(int_col, (this->coord.second));
+};
+
+Tuple<char, int> Position::parseRealCoord() const {
+    char char_col = (char)(this->real_coord.first + 65);
+    cout<<char_col;
+    return Tuple<char, int>(char_col, (this->real_coord.second)+1);
 };
 
 
@@ -37,7 +49,14 @@ bool Position::isValidPosition() const {
         return false;
     return true;
 
+}
 
+string Position::toString() const{
+    string first  =  string(1,this->coord.first);
+
+    string second  = to_string(this->coord.second);
+
+    return  "( " + first + ", " + second + " )";
 }
 
 

@@ -2,13 +2,14 @@
 // Created by andre on 22/01/2022.
 //
 
+#include <vector>
 #include "Piece.h"
+using namespace std;
 
-
-int Piece::validMove(Position start, Position end) {
+vector<Position>* Piece::validMove(Position start, Position end) {
     if (start.isValidPosition() && end.isValidPosition())
-        return 1;
-    return 0;
+        return new vector<Position>();
+    return nullptr;
 }
 
 
@@ -17,6 +18,9 @@ Piece::Piece(bool own, string name, Position p) {
     owner = own;
     this->name= name;
 }
+
+
+
 
 string Piece::toString() const {
     return "Piece: " + this->name;
