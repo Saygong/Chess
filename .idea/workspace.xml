@@ -12,18 +12,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e8fd7d65-0508-4177-9cbf-41ee5bcdb890" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/Pieces/Bishops/Bishop.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Pieces/Bishops/Bishop.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Pieces/Knights/Knight.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Pieces/Knights/Knight.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Utilities/min_max.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Pieces/Pawns/Pawn.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Pieces/Pawns/Pawn.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Board/ChessBoard/ChessBoard.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Board/ChessBoard/ChessBoard.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Pieces/Rooks/Rook.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Pieces/Rooks/Rook.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Pieces/Rooks/Rook.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Pieces/Rooks/Rook.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Pieces/Bishops/Bishop.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Pieces/Bishops/Bishop.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Pieces/Knights/Knight.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Pieces/Knights/Knight.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Position/Position.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Position/Position.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Position/Position.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Position/Position.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Utilities/min_max.cpp" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,15 +79,15 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Chess" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Chess" TARGET_NAME="Chess" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Chess" RUN_TARGET_NAME="Chess">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="CMake.Explicit.Target" predefinedTargetName="Chess" />
-      </method>
-    </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
   </component>
@@ -110,6 +108,9 @@
       <workItem from="1643204223385" duration="5172000" />
       <workItem from="1643209495464" duration="4863000" />
       <workItem from="1643228065727" duration="3619000" />
+      <workItem from="1643231980781" duration="437000" />
+      <workItem from="1643302187186" duration="2706000" />
+      <workItem from="1643310553944" duration="6645000" />
     </task>
     <servers />
   </component>

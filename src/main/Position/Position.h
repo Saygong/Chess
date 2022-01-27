@@ -68,7 +68,7 @@ public:
      * Method that allow to represent a Position with a string
      * @return string
      */
-    string toString() const;
+    string toString(const char *s) const;
 
     /**
      * Check if a position is valid. Inside the ranges [A-H] and [1-8]

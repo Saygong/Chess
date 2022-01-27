@@ -25,8 +25,7 @@ vector<Position>* Knight::validMove(Position start, Position end) {
             if(rowStart == rowEnd+1 || rowStart == rowEnd+2 || rowStart == rowEnd-1 || rowStart == rowEnd-2)
                 return trace;
         }
-        return nullptr;
-
     }
+    return nullptr;
 
 }

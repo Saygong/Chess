@@ -4,6 +4,7 @@
 
 #include "Position.h"
 #include<iostream>
+#include <cstring>
 
 Position::Position() {};
 
@@ -22,7 +23,8 @@ Position::Position(int col, int row){
 
 Tuple<int, int> Position::parseCoord() const {
     int int_col = (int)this->coord.first - 65;
-    return Tuple<int, int>(int_col, (this->coord.second));
+
+    return Tuple<int, int>(int_col, (this->coord.second -1));
 };
 
 Tuple<char, int> Position::parseRealCoord() const {
@@ -50,12 +52,20 @@ bool Position::isValidPosition() const {
 
 }
 
-string Position::toString() const{
-    string first  =  string(1,this->coord.first);
+//Testing function
+string Position::toString(const char *s) const{
 
-    string second  = to_string(this->coord.second);
+    if(strcmp(s, "ideal")==0){
+        string f  =  string(1,this->coord.first);
+        string sec  = to_string(this->coord.second);
+        return  "( " + f + ", " + sec + " )";
+    }
+    else{
+        string f  =  to_string(this->real_coord.first);
+        string sec  = to_string(this->real_coord.second);
+        return  "( " + f + ", " + sec + " )";
+    }
 
-    return  "( " + first + ", " + second + " )";
 }
 
 

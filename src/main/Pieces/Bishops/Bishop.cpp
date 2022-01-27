@@ -3,7 +3,7 @@
 //
 
 #include "Bishop.h"
-
+#include <iostream>
 
 
 Bishop::Bishop(bool own, string name, Position p) : Piece(own, move(name), p) { };
@@ -26,13 +26,30 @@ vector<Position>* Bishop::validMove(Position start, Position end) {
 
         if (diffCol == diffRow) {
 
-            int minCol =  colStart < colEnd ? colStart : colEnd;
-            int maxCol =  colStart > colEnd ? colStart : colEnd;
-            int minRow =  rowStart < rowEnd ? rowStart : rowEnd;
+            int minCol = colStart < colEnd ? colStart : colEnd;
+            int maxCol = colStart > colEnd ? colStart : colEnd;
+            int minRow = rowStart < rowEnd ? rowStart : rowEnd;
+            int maxRow = rowStart > rowEnd ? rowStart : rowEnd;
 
-            for(int i = minCol; i < maxCol; i++){
-                trace->insert(trace->begin(), Position(i, minRow));
-                minRow++;
+            if ((colStart > colEnd && rowStart > rowEnd) || (colStart < colEnd && rowStart < rowEnd)){
+
+                for (int i = minCol; i <= maxCol; i++) {
+                    if (!(Position(i, minRow).equals(start))) {
+                        trace->insert(trace->begin(), Position(i, minRow));
+                    }
+                    minRow++;
+                }
+
+            }
+            else{
+
+                for(int i = minCol; i <= maxCol; i++){
+                    if(!(Position(i, maxRow).equals(start))){
+                        trace->insert(trace->begin(), Position(i, maxRow));
+                    }
+                    maxRow--;
+                }
+
             }
             return trace;
         }

@@ -10,6 +10,7 @@
 #include "main/Pieces/Rooks/Rook.h"
 #include "main/Pieces/Knights/Knight.h"
 #include "main/Pieces/Bishops/Bishop.h"
+#include "main/Pieces/Pawns/Pawn.h"
 
 using namespace std;
 
@@ -30,7 +31,7 @@ int main(){
     vector<Position>* traceRook = myRook.validMove(Position('A', 1), Position('F', 1));
     cout<<"Rook: ";
     for(Position i : *traceRook){
-         cout<< i.toString();
+         cout<< i.toString("ideal");
     }
     cout <<endl;
 
@@ -39,13 +40,24 @@ int main(){
     cout << "Knight: ";
     cout << traceKnight <<endl;
 
-    Bishop myBish = Bishop(true,"bishop", Position('D', 3));
-    vector<Position>* traceBishop = myBish.validMove(myBish.p, Position('F', 5));
+    Bishop myBish = Bishop(true,"bishop", Position('A', 1));
+    vector<Position>* traceBishop = myBish.validMove(myBish.p, Position('H', 8));
     cout<<"Bishop: ";
     for(Position i : *traceBishop){
-        cout<< i.toString();
+        cout<< i.toString("real");
     }
     cout <<endl;
+
+    Pawn myPawn = Pawn(false,"pawn", Position('E', 3));
+    vector<Position>* tracePawn = myPawn.validMove(myPawn.p, Position('E', 4));
+    cout<< "Pawn: ";
+    for(Position i : *tracePawn){
+        cout<< i.toString("ideal");
+    }
+    cout <<endl;
+
+
+
 
 
 
