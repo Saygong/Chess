@@ -14,6 +14,9 @@ class Piece {
 
 protected:
     bool owner;
+    static void horizontalMovement(Position start, Position end, vector<Position>* trace);
+    static void verticalMovement(Position start, Position end, vector<Position>* trace);
+    static void diagonalMovement(Position start, Position end, vector<Position>* trace);
 
 public:
     string name;

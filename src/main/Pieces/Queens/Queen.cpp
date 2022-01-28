@@ -1,15 +1,16 @@
 //
-// Created by Andrea on 26/01/2022.
+// Created by Andrea on 28/01/2022.
 //
 
-#include "Bishop.h"
 #include <iostream>
+#include "Queen.h"
 
 
-Bishop::Bishop(bool own, string name, Position p) : Piece(own, move(name), p) { };
+Queen::Queen(bool own, string name, Position p) : Piece(own, move(name), p) { }
 
 
-vector<Position>* Bishop::validMove(Position start, Position end) {
+vector<Position>* Queen::validMove(Position start, Position end) {
+
 
     vector<Position>* trace = Piece::validMove(start, end);
 
@@ -28,10 +29,19 @@ vector<Position>* Bishop::validMove(Position start, Position end) {
             Piece::diagonalMovement(start, end, trace);
             return trace;
         }
+        else if(start.coord.first == end.coord.first){
+            Piece::verticalMovement(start, end, trace);
+            return trace;
+        }
+        else{
+            Piece::horizontalMovement(start, end, trace);
+            return trace;
+        }
+
+
 
     }
     return nullptr;
 
+
 }
-
-

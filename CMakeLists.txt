@@ -17,6 +17,6 @@ set(Sources
         src/main/Position/Position.cpp
         src/main/Pieces/Piece.cpp
         src/main/Pieces/Rooks/Rook.cpp
-        src/main/Pieces/Knights/Knight.cpp src/main/Pieces/Knights/Knight.h src/main/Pieces/Bishops/Bishop.cpp src/main/Pieces/Bishops/Bishop.h src/main/Pieces/Pawns/Pawn.cpp src/main/Pieces/Pawns/Pawn.h)
+        src/main/Pieces/Knights/Knight.cpp src/main/Pieces/Knights/Knight.h src/main/Pieces/Bishops/Bishop.cpp src/main/Pieces/Bishops/Bishop.h src/main/Pieces/Pawns/Pawn.cpp src/main/Pieces/Pawns/Pawn.h src/main/Pieces/Kings/King.cpp src/main/Pieces/Kings/King.h src/main/Pieces/Queens/Queen.cpp src/main/Pieces/Queens/Queen.h)
 
 add_executable(Chess ${Sources} ${Headers})

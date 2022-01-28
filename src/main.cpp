@@ -11,6 +11,8 @@
 #include "main/Pieces/Knights/Knight.h"
 #include "main/Pieces/Bishops/Bishop.h"
 #include "main/Pieces/Pawns/Pawn.h"
+#include "main/Pieces/Kings/King.h"
+#include "main/Pieces/Queens/Queen.h"
 
 using namespace std;
 
@@ -57,7 +59,18 @@ int main(){
     cout <<endl;
 
 
+    King myKing = King(true,"king", Position('C', 3));
+    vector<Position>* traceKing = myKing.validMove(myKing.p, Position('B', 2));
+    cout << "King: ";
+    cout << traceKing <<endl;
 
+    Queen myQueen = Queen(false,"pawn", Position('A', 1));
+    vector<Position>* traceQueen = myQueen.validMove(myQueen.p, Position('A', 8));
+    cout<< "Queen: ";
+    for(Position i : *traceQueen){
+        cout<< i.toString("ideal");
+    }
+    cout <<endl;
 
 
 
