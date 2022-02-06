@@ -104,10 +104,10 @@ namespace ChessApp.src.Board.ChessBoard
             foreach (Piece piece in b_pieces)
             {
 
-                PictureBox pb = new PictureBox();
+                PictureBox pb = new PictureBox() { Dock = DockStyle.Fill };
                 pb.ImageLocation = @"../../../Resources/pieces/" + piece.name + ".png";
                 pb.SizeMode = PictureBoxSizeMode.Zoom;
-                pb.Dock = DockStyle.Fill;
+                
                 int row = piece.p.getRealCoord().second;
                 int col = piece.p.getRealCoord().first;
                 tbl.Controls.Add(pb, col, row);
@@ -118,7 +118,7 @@ namespace ChessApp.src.Board.ChessBoard
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    PictureBox pb = new PictureBox();
+                    PictureBox pb = new PictureBox() { Dock = DockStyle.Fill };
                     pb.SizeMode = PictureBoxSizeMode.Zoom;
                     tbl.Controls.Add(pb, j, i);
 
@@ -148,16 +148,20 @@ namespace ChessApp.src.Board.ChessBoard
             return true;
         }
 
-
-        public override bool allowedMove(List<Position> a)
+        /** Check if a movement trace is allowed by checking if there is at least a piece that block the movement */
+        public override bool allowedMove(List<Position> allowed)
         {
-            return false;
+            foreach(Position p in allowed)
+            {
+                if (this.getPiece(p) != null)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
-        public override void makeMove()
-        {
         
-        }
 
         public override void run()
         {

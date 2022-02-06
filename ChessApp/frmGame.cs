@@ -19,6 +19,8 @@ namespace ChessApp
         private PictureBox? firstClicked = null;
         private bool secondClick = false;
         private ChessBoard board;
+        private List<Position>? allowed; 
+
 
         public frmGame(string type)
         {
@@ -33,15 +35,31 @@ namespace ChessApp
                 {
                     // Sure casting beacuse we are sure that the retrieved element is a PictureBox
                     TableLayoutPanel table = this.tblChessBoard;
-                    PictureBox valid = new PictureBox();
+                    PictureBox valid = new PictureBox() { Dock = DockStyle.Fill }; ;
                     table.Controls.Remove(table.GetControlFromPosition(position.getRealCoord().first, position.getRealCoord().second));
-                    
-                    valid.ImageLocation = @"Resources/green_gradient1.png";
+                    valid.Click +=  PictureBox_Click;
+                    valid.Image = Properties.Resources.green;
                     valid.SizeMode = PictureBoxSizeMode.Zoom;
                     table.Controls.Add(valid, position.getRealCoord().first, position.getRealCoord().second);
 
                 }
             }
+        }
+
+        private void resetColouredMoves(List<Position> allowed, Position destination)
+        {
+            TableLayoutPanel table = this.tblChessBoard;
+            foreach (Position position in allowed)
+            {
+
+                if (!position.equals(destination))
+                {
+                    PictureBox cntrl = (PictureBox)table.GetControlFromPosition(position.getRealCoord().first, position.getRealCoord().second);
+                    cntrl.Image = null;
+                }
+
+            }
+            
         }
 
         private void pictureBox_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
@@ -54,7 +72,9 @@ namespace ChessApp
         public void PictureBox_Click(object sender, EventArgs e)
         {
             PictureBox clicked = (PictureBox)sender;
+            
             if (!secondClick) { 
+
                 if(clicked.Image != null)
                 {
                     secondClick = true;
@@ -62,8 +82,7 @@ namespace ChessApp
                     int col = this.tblChessBoard.GetColumn(clicked);
                     int row = this.tblChessBoard.GetRow(clicked);
 
-                    List<Position>? allowed = (board.getPiece(new Position(col, row))).getAllowedMoves(this.tblChessBoard);
-                    this.lblInfo.Text = board.getPiece(new Position(col, row)).toString();
+                    this.allowed = (board.getPiece(new Position(col, row))).getAllowedMoves(this.tblChessBoard, board);
                     
                     colorMoves(allowed);
 
@@ -72,10 +91,42 @@ namespace ChessApp
             }
             else
             {
+                
+                int col = this.tblChessBoard.GetColumn(clicked);
+                int row = this.tblChessBoard.GetRow(clicked);
+                bool correct = false;
+                Position destination = new Position(col, row);
+                
+                if(allowed != null) { 
 
-                clicked.Image = firstClicked.Image;
-                firstClicked.Image = null;
-                secondClick = false;
+                    foreach(Position p in allowed)
+                    {
+                     
+                        if (destination.equals(p))
+                        {
+                            correct = true;
+                        }
+                    }
+
+                    if (correct)
+                    {
+                        resetColouredMoves(this.allowed, destination);
+                        clicked.Image = firstClicked.Image;
+                        firstClicked.Image = null;
+                        secondClick = false;
+                        Position starting = new Position(this.tblChessBoard.GetColumn(firstClicked), this.tblChessBoard.GetRow(firstClicked));
+                        board.makeMove(board.getPiece(starting), destination);
+                        
+                    }
+                    else
+                    {
+                        secondClick = false;
+                        resetColouredMoves(this.allowed, destination);
+                        allowed = null;
+                    }
+                    this.allowed = null;
+                }
+                
             }
 
         }

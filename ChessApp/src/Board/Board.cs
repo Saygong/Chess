@@ -68,7 +68,11 @@ namespace ChessApp.src.Board
         /**
          * Allow user to make a move
          */
-        public abstract void makeMove();
+        public void makeMove(Piece p, Position end)
+        {
+            // TODO add eating logic
+            p.p = end;
+        }
 
         /**
          * Check if a move is allowed in the board

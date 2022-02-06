@@ -25,11 +25,17 @@ namespace ChessApp.src.Pieces.Knight
                 int colEnd = end.getRealCoord().first;
                 int rowEnd = end.getRealCoord().second;
 
-                if (colStart == colEnd + 1 || colStart == colEnd - 1)
+                if ((colStart == colEnd + 1 || colStart == colEnd - 1) && (rowStart == rowEnd + 2 || rowStart == rowEnd - 2))
                 {
-                    if (rowStart == rowEnd + 1 || rowStart == rowEnd + 2 || rowStart == rowEnd - 1 || rowStart == rowEnd - 2)
-                        return trace;
+                    trace.Add(end);
+                    return trace;
                 }
+                else if ((colStart == colEnd - 2 || colStart == colEnd +2) && (rowStart == rowEnd + 1 || rowStart == rowEnd - 1))
+                {
+                    trace.Add(end);
+                    return trace;
+                }
+                
             }
             return null;
 

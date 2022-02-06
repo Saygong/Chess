@@ -30,7 +30,6 @@ namespace ChessApp.src.Pieces.Bishop
 
                 if (diffCol == diffRow)
                 {
-
                     Piece.diagonalMovement(start, end, trace);
                     return trace;
                 }

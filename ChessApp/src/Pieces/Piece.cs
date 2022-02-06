@@ -1,5 +1,6 @@
 ﻿using System;
 using ChessApp.src.Positions;
+using ChessApp.src.Board;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -84,6 +85,7 @@ namespace ChessApp.src.Pieces
                     maxRow--;
                 }
             }
+            
         }
 
 
@@ -101,12 +103,13 @@ namespace ChessApp.src.Pieces
          */
         public virtual List<Position>? validMove(Position start, Position end)
         {
-            if (start.isValidPosition() && end.isValidPosition())
+            if (start.isValidPosition() && end.isValidPosition() && (!start.equals(end)))
                 return new List<Position>();
             return null;
         }
 
-        public List<Position>? getAllowedMoves(TableLayoutPanel tbl)
+
+        public List<Position>? getAllowedMoves(TableLayoutPanel tbl, Board.Board brd)
         {
             List<Position> allowed = new List<Position>();
             for (int i = 0; i < 8; i++)
@@ -116,7 +119,18 @@ namespace ChessApp.src.Pieces
                     List<Position>? valid = this.validMove(this.p, new Position(i, j));
                     if (valid != null)
                     {
-                        allowed.Add(new Position(i, j));
+
+                        bool blocked = false;
+                        foreach (Position p in valid)
+                        {
+                            if (brd.getPiece(p) != null)
+                            {
+                                blocked = true;
+                            }
+                        }
+                        if(!blocked)
+                            allowed.Add(new Position(i, j));
+
                     }
                 }
             }
@@ -124,8 +138,10 @@ namespace ChessApp.src.Pieces
             {
                 return allowed;
             }
+
             else return null;
         }
+
 
         /**
          * Provide a string representation of a piece

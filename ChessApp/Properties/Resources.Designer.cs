@@ -63,19 +63,9 @@ namespace ChessApp.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap chess_logo {
+        internal static System.Drawing.Bitmap green {
             get {
-                object obj = ResourceManager.GetObject("chess-logo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap green_gradient {
-            get {
-                object obj = ResourceManager.GetObject("green_gradient", resourceCulture);
+                object obj = ResourceManager.GetObject("green", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
