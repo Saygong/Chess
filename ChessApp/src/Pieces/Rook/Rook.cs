@@ -11,15 +11,19 @@ namespace ChessApp.src.Pieces.Rook
     {
 
         public Rook(bool own, string name, Position p) : base(own, name, p) { }
+
+
         public override List<Position>? validMove(Position start, Position end)
         {
             List<Position>? trace = base.validMove(start, end);
-
+            
             if (trace != null)
             {
                 if (start.coord.first == end.coord.first)
                 {
+                                        
                     Piece.verticalMovement(start, end, trace);
+
                     return trace;
                 }
                 else if(start.coord.second == end.coord.second)

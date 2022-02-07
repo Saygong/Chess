@@ -71,6 +71,7 @@ namespace ChessApp.src.Board
         public void makeMove(Piece p, Position end)
         {
             // TODO add eating logic
+
             p.p = end;
         }
 

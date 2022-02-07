@@ -28,18 +28,18 @@ namespace ChessApp.src.Pieces
             int mi = a < b ? a : b;
             int ma = a > b ? a : b;
 
-            for (int i = mi + 1; i <= ma; i++)
+            for (int i = mi; i < ma; i++)
             {
-                char c = (char)(65 + i);
-                trace.Add(new Position(c, start.coord.second));
+                
+                trace.Add(new Position(i, start.coord.second-1));
             }
         }
 
 
         public static void verticalMovement(Position start, Position end, List<Position> trace)
         {
-            int a = (start.getRealCoord()).second;
-            int b = (end.getRealCoord()).second;
+            int a = (start.coord).second;
+            int b = (end.coord).second;
             int mi = a < b ? a : b;
             int ma = a > b ? a : b;
 
@@ -117,13 +117,14 @@ namespace ChessApp.src.Pieces
                 for (int j = 0; j < 8; j++)
                 {
                     List<Position>? valid = this.validMove(this.p, new Position(i, j));
+                    
                     if (valid != null)
                     {
-
+                        
                         bool blocked = false;
-                        foreach (Position p in valid)
+                        foreach (Position pos in valid)
                         {
-                            if (brd.getPiece(p) != null)
+                            if (brd.getPiece(pos) != null)
                             {
                                 blocked = true;
                             }
@@ -139,7 +140,10 @@ namespace ChessApp.src.Pieces
                 return allowed;
             }
 
-            else return null;
+            else
+            {
+                return null;
+            }
         }
 
 

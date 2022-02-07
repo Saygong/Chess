@@ -56,16 +56,14 @@ namespace ChessApp
                 {
                     PictureBox cntrl = (PictureBox)table.GetControlFromPosition(position.getRealCoord().first, position.getRealCoord().second);
                     cntrl.Image = null;
+                    
                 }
 
             }
             
         }
 
-        private void pictureBox_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
-        {
-            
-        }
+        
 
 
 
@@ -77,21 +75,26 @@ namespace ChessApp
 
                 if(clicked.Image != null)
                 {
-                    secondClick = true;
-                    firstClicked = clicked;
+                    
                     int col = this.tblChessBoard.GetColumn(clicked);
                     int row = this.tblChessBoard.GetRow(clicked);
 
                     this.allowed = (board.getPiece(new Position(col, row))).getAllowedMoves(this.tblChessBoard, board);
                     
-                    colorMoves(allowed);
-
+                    if(allowed != null)
+                    {    
+                        secondClick = true;
+                        firstClicked = clicked;
+                        colorMoves(allowed);
+                    }
+                    
                 }
-                
             }
             else
             {
-                
+
+                // Movement track: this.lblInfo.Text = board.getPiece(starting).p.toString("ideal");   and    board.getPiece(destination).p.toString("ideal");
+
                 int col = this.tblChessBoard.GetColumn(clicked);
                 int row = this.tblChessBoard.GetRow(clicked);
                 bool correct = false;
@@ -115,12 +118,14 @@ namespace ChessApp
                         firstClicked.Image = null;
                         secondClick = false;
                         Position starting = new Position(this.tblChessBoard.GetColumn(firstClicked), this.tblChessBoard.GetRow(firstClicked));
+                        
                         board.makeMove(board.getPiece(starting), destination);
                         
                     }
                     else
                     {
                         secondClick = false;
+                        firstClicked = null;
                         resetColouredMoves(this.allowed, destination);
                         allowed = null;
                     }
