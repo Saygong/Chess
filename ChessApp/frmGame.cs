@@ -153,10 +153,6 @@ namespace ChessApp
 
         }
 
-        private void lblTurn_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 
 }
