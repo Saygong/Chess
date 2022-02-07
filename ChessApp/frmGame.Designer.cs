@@ -426,6 +426,8 @@
             this.Controls.Add(this.tblColumn);
             this.Controls.Add(this.tblChessBoard);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximumSize = new System.Drawing.Size(875, 690);
+            this.MinimumSize = new System.Drawing.Size(875, 690);
             this.Name = "frmGame";
             this.Text = "frmGame";
             this.Load += new System.EventHandler(this.frmGame_Load);
