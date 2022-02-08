@@ -32,42 +32,58 @@ namespace ChessApp.src.Pieces.Pawn
                 int colEnd = (end.getRealCoord()).first;
                 int rowEnd = (end.getRealCoord()).second;
                 int rowStart = (start.getRealCoord()).second;
+                // Direction disable the possibility for a pawn to go backward
                 int direction = movingUp ? (rowStart - rowEnd) : (rowEnd - rowStart);
                 if (col == colEnd && direction > 0)
                 {
-
                     if (this.firstMove)
                     {
-
-                        int min = rowStart < rowEnd ? rowStart : rowEnd;
-                        int max = rowStart > rowEnd ? rowStart : rowEnd;
-
-                        if (((rowStart > rowEnd) && (rowEnd > rowStart - 3)) || ((rowStart < rowEnd) && (rowEnd < rowStart + 3)))
+                        if(rowStart < rowEnd)
                         {
-
-                            for (int i = min; i <= max; i++)
+                            if(rowEnd - 2 <= rowStart)
                             {
-
-                                if (!(new Position(col, i).equals(start)))
+                                for (int i = rowStart; i <= rowEnd; i++)
                                 {
-                                    trace.Add(new Position(col, i));
-                                }
-                            }
-                            this.firstMove = false;
 
-                            return trace;
+                                    if (!(new Position(col, i).equals(start)))
+                                    {
+                                        trace.Add(new Position(col, i));
+                                    }
+                                }
+                                this.firstMove = false;
+
+                                return trace;
+                            }
 
                         }
-                        else return null;
+                        else
+                        {
+                            if (rowEnd + 2 >= rowStart)
+                            {
+                                for (int i = rowEnd; i <= rowStart; i++)
+                                {
+                                    if (!(new Position(col, i).equals(start)))
+                                    {
+                                        trace.Add(new Position(col, i));
+                                    }
+                                }
+                                this.firstMove = false;
+
+                                return trace;
+                            }
+                        }
 
                     }
-
                     else
                     {
-                        trace.Add(end);
-                        return trace;
+                        
+                        if (rowEnd - 1 == rowStart || rowEnd + 1 == rowStart)
+                        {
+                            trace.Add(end);
+                            return trace;
+                        }
+                        
                     }
-
                 }
 
             }
@@ -75,7 +91,6 @@ namespace ChessApp.src.Pieces.Pawn
 
         }
         
-
     }
 
     

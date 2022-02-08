@@ -28,6 +28,7 @@ namespace ChessApp.src.Pieces.Rook
                 }
                 else if(start.coord.second == end.coord.second)
                 {
+                    
                     Piece.horizontalMovement(start, end, trace);
                     return trace;
                 }

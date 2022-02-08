@@ -25,14 +25,24 @@ namespace ChessApp.src.Pieces
         {
             int a = (start.getRealCoord()).first;
             int b = (end.getRealCoord()).first;
-            int mi = a < b ? a : b;
-            int ma = a > b ? a : b;
+            int row = start.getRealCoord().second;
 
-            for (int i = mi; i < ma; i++)
+            if (a < b)
             {
-                
-                trace.Add(new Position(i, start.coord.second-1));
+                for (int i = a + 1; i <= b; i++)
+                {
+                    trace.Add(new Position(i, row));
+                }
             }
+            else
+            {
+                for (int i = a - 1; i >= b; i--)
+                {
+                    trace.Add(new Position(i, row));
+                }
+
+            }
+            
         }
 
 
@@ -117,31 +127,37 @@ namespace ChessApp.src.Pieces
                 for (int j = 0; j < 8; j++)
                 {
                     List<Position>? valid = this.validMove(this.p, new Position(i, j));
-                    
+
                     if (valid != null)
                     {
                         
                         bool blocked = false;
                         foreach (Position pos in valid)
                         {
+                            
                             if (brd.getPiece(pos) != null)
                             {
                                 blocked = true;
                             }
                         }
-                        if(!blocked)
+                        if(blocked == false)
                             allowed.Add(new Position(i, j));
 
                     }
+
+                    
+
                 }
             }
             if (allowed.Count > 0)
             {
+                
                 return allowed;
             }
 
             else
             {
+                
                 return null;
             }
         }

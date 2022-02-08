@@ -53,16 +53,18 @@
             this.pnlBackground.Controls.Add(this.label1);
             this.pnlBackground.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlBackground.Location = new System.Drawing.Point(0, 0);
+            this.pnlBackground.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlBackground.Name = "pnlBackground";
-            this.pnlBackground.Size = new System.Drawing.Size(900, 800);
+            this.pnlBackground.Size = new System.Drawing.Size(1029, 1067);
             this.pnlBackground.TabIndex = 0;
             // 
             // pnlExit
             // 
             this.pnlExit.Controls.Add(this.btnExit);
-            this.pnlExit.Location = new System.Drawing.Point(632, 0);
+            this.pnlExit.Location = new System.Drawing.Point(722, 0);
+            this.pnlExit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlExit.Name = "pnlExit";
-            this.pnlExit.Size = new System.Drawing.Size(268, 50);
+            this.pnlExit.Size = new System.Drawing.Size(306, 67);
             this.pnlExit.TabIndex = 1;
             // 
             // btnExit
@@ -74,9 +76,10 @@
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.btnExit.Location = new System.Drawing.Point(195, 8);
+            this.btnExit.Location = new System.Drawing.Point(223, 11);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(70, 35);
+            this.btnExit.Size = new System.Drawing.Size(80, 47);
             this.btnExit.TabIndex = 18;
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
@@ -85,8 +88,9 @@
             // 
             this.pnlBack.Controls.Add(this.btnBack);
             this.pnlBack.Location = new System.Drawing.Point(0, 0);
+            this.pnlBack.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlBack.Name = "pnlBack";
-            this.pnlBack.Size = new System.Drawing.Size(211, 50);
+            this.pnlBack.Size = new System.Drawing.Size(241, 67);
             this.pnlBack.TabIndex = 0;
             // 
             // btnBack
@@ -98,9 +102,10 @@
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnBack.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.btnBack.Location = new System.Drawing.Point(21, 10);
+            this.btnBack.Location = new System.Drawing.Point(24, 13);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(29, 31);
+            this.btnBack.Size = new System.Drawing.Size(33, 41);
             this.btnBack.TabIndex = 17;
             this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
@@ -110,17 +115,19 @@
             this.pctLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pctLogo.Image = ((System.Drawing.Image)(resources.GetObject("pctLogo.Image")));
             this.pctLogo.Location = new System.Drawing.Point(0, 0);
+            this.pctLogo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pctLogo.Name = "pctLogo";
-            this.pctLogo.Size = new System.Drawing.Size(900, 50);
+            this.pctLogo.Size = new System.Drawing.Size(1029, 67);
             this.pctLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pctLogo.TabIndex = 10;
             this.pctLogo.TabStop = false;
             // 
             // pnlLoader
             // 
-            this.pnlLoader.Location = new System.Drawing.Point(12, 73);
+            this.pnlLoader.Location = new System.Drawing.Point(14, 97);
+            this.pnlLoader.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlLoader.Name = "pnlLoader";
-            this.pnlLoader.Size = new System.Drawing.Size(875, 690);
+            this.pnlLoader.Size = new System.Drawing.Size(1000, 920);
             this.pnlLoader.TabIndex = 9;
             // 
             // label1
@@ -129,19 +136,20 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.label1.Location = new System.Drawing.Point(778, 776);
+            this.label1.Location = new System.Drawing.Point(889, 1035);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(110, 15);
+            this.label1.Size = new System.Drawing.Size(131, 18);
             this.label1.TabIndex = 8;
             this.label1.Text = "By Andrea Gentilini";
             // 
             // Chess
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(900, 800);
+            this.ClientSize = new System.Drawing.Size(1029, 1067);
             this.Controls.Add(this.pnlBackground);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Chess";
             this.Text = "Chess";
             this.pnlBackground.ResumeLayout(false);
