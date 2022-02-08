@@ -118,7 +118,7 @@ namespace ChessApp.src.Pieces
             return null;
         }
 
-
+        //TODO moves getAllowedMoves into subclasses and use the movement methods (example -> queen use horizontal, vertical and diagonal)
         public List<Position>? getAllowedMoves(TableLayoutPanel tbl, Board.Board brd)
         {
             List<Position> allowed = new List<Position>();
@@ -144,22 +144,13 @@ namespace ChessApp.src.Pieces
                             allowed.Add(new Position(i, j));
 
                     }
-
-                    
-
                 }
             }
             if (allowed.Count > 0)
-            {
-                
                 return allowed;
-            }
 
-            else
-            {
-                
-                return null;
-            }
+            return null;
+            
         }
 
 

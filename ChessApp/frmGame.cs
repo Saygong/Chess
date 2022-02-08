@@ -62,9 +62,8 @@ namespace ChessApp
             }
             
         }
-
-        
-
+        // IDEA -> create 2 method - MakeFirstMove and MakeSecondMove in the Board class 
+        // passing starting and ending position 
 
 
         public void PictureBox_Click(object sender, EventArgs e)
@@ -104,7 +103,6 @@ namespace ChessApp
 
                     foreach(Position p in allowed)
                     {
-                     
                         if (destination.equals(p))
                         {
                             correct = true;
@@ -127,7 +125,7 @@ namespace ChessApp
                         secondClick = false;
                         firstClicked = null;
                         resetColouredMoves(this.allowed, destination);
-                        allowed = null;
+                        
                     }
                     this.allowed = null;
                 }
