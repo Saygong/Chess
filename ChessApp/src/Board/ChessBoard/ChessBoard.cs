@@ -53,7 +53,7 @@ namespace ChessApp.src.Board.ChessBoard
                 b_pieces.Add(new Pawn(true, userPrefix + "Pawn", userP));
 
                 Position pcP = new Position((char)i, 7);
-                b_pieces.Add(new Pawn(true, pcPrefix + "Pawn", pcP));
+                b_pieces.Add(new Pawn(false, pcPrefix + "Pawn", pcP));
 
             }
 
@@ -90,44 +90,14 @@ namespace ChessApp.src.Board.ChessBoard
 
         public override void initBoard()
         {
-            this.player_turn = "white";
+            this.player_turn = isUserWhite ? true : false ;
 
             /* Creation of the user set of pieces */
             generateSets();
             
         }
 
-        public override void placePieces(TableLayoutPanel tbl)
-        {
-
-            // Adding pictureboxes with images
-            foreach (Piece piece in b_pieces)
-            {
-
-                PictureBox pb = new PictureBox() { Dock = DockStyle.Fill };
-                pb.ImageLocation = @"../../../Resources/pieces/" + piece.name + ".png";
-                pb.SizeMode = PictureBoxSizeMode.Zoom;
-                
-                int row = piece.p.getRealCoord().second;
-                int col = piece.p.getRealCoord().first;
-                tbl.Controls.Add(pb, col, row);
-            }
-
-            // Adding empty pictureboxes to enable movement
-            for (int i = 2; i < 6; i++)
-            {
-                for (int j = 0; j < 8; j++)
-                {
-                    PictureBox pb = new PictureBox() { Dock = DockStyle.Fill };
-                    pb.SizeMode = PictureBoxSizeMode.Zoom;
-                    tbl.Controls.Add(pb, j, i);
-
-                }
-            }
-
-        }
-
-
+        
         //TODO
 
         /** Return 0 if White is checked, 1 if Black is checked, -1 if neither. */
@@ -147,20 +117,6 @@ namespace ChessApp.src.Board.ChessBoard
         {
             return true;
         }
-
-        /** Check if a movement trace is allowed by checking if there is at least a piece that block the movement */
-        public override bool allowedMove(List<Position> allowed)
-        {
-            foreach(Position p in allowed)
-            {
-                if (this.getPiece(p) != null)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
         
 
         public override void run()

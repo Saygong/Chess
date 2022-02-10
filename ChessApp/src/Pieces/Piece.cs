@@ -53,10 +53,24 @@ namespace ChessApp.src.Pieces
             int mi = a < b ? a : b;
             int ma = a > b ? a : b;
 
-            for (int i = mi + 1; i <= ma; i++)
+
+            if (a < b)
             {
-                trace.Add(new Position(start.coord.first, i));
+                for (int i = a + 1; i <= b; i++)
+                {
+                    trace.Add(new Position(start.coord.first, i));
+                }
             }
+            else
+            {
+                for (int i = a - 1; i >= b; i--)
+                {
+                    trace.Add(new Position(start.coord.first, i));
+                }
+
+            }
+
+
         }
 
 
@@ -119,7 +133,7 @@ namespace ChessApp.src.Pieces
         }
 
         //TODO moves getAllowedMoves into subclasses and use the movement methods (example -> queen use horizontal, vertical and diagonal)
-        public List<Position>? getAllowedMoves(TableLayoutPanel tbl, Board.Board brd)
+        public List<Position>? getAllowedMoves(Board.Board brd)
         {
             List<Position> allowed = new List<Position>();
             for (int i = 0; i < 8; i++)

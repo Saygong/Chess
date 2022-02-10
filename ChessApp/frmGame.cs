@@ -1,5 +1,6 @@
 ﻿using ChessApp.src.Board.ChessBoard;
 using ChessApp.src.Positions;
+using ChessApp.src.Pieces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,19 +17,34 @@ namespace ChessApp
     public partial class frmGame : Form
     {
 
-        private PictureBox? firstClicked = null;
-        private bool secondClick = false;
+        
         private ChessBoard board;
-        private List<Position>? allowed; 
+        private PictureBox? first = null;
+        private List<Position>? backupAllowed;
+        private bool turn; 
 
 
         public frmGame(string type)
         {
             InitializeComponent();
+            ChessBoard board = new ChessBoard();
+            this.board = board;
+            board.initBoard();
+            TableLayoutPanel table = this.tblChessBoard;
+            this.turn = board.player_turn;
+            this.placePieces();
+
+            foreach (Control ctrl in table.Controls)
+            {
+                ctrl.Click += PictureBox_Click;
+            }
         }
 
+
+        /** Method that will check the allowed field */
         private void colorMoves(List<Position>? allowed)
         {
+            this.backupAllowed = allowed;
             if (allowed != null)
             {
                 foreach (Position position in allowed)
@@ -46,110 +62,140 @@ namespace ChessApp
             }
         }
 
-        private void resetColouredMoves(List<Position> allowed, Position destination)
+
+
+        /** Method that will reset the previously checked as allowed field */
+        private void resetColouredMoves(List<Position>? allowed, PictureBox? second)
         {
+
             TableLayoutPanel table = this.tblChessBoard;
-            foreach (Position position in allowed)
+            Position? destination = null;
+            if (second != null)
             {
+                int row = table.GetRow(second);
+                int col = table.GetColumn(second);
+                destination = new Position(row, col);
+                
+            }
 
-                if (!position.equals(destination))
+            if (allowed != null)
+            {
+                if(destination == null)
                 {
-                    PictureBox cntrl = (PictureBox)table.GetControlFromPosition(position.getRealCoord().first, position.getRealCoord().second);
-                    cntrl.Image = null;
-                    
-                }
+                    foreach (Position position in allowed)
+                    {
 
+                        PictureBox cntrl = (PictureBox)table.GetControlFromPosition(position.getRealCoord().first, position.getRealCoord().second);
+                        cntrl.Image = null;
+
+                    }
+                }
+                else
+                {
+                    foreach (Position position in allowed)
+                    {
+
+                        if (!position.equals(destination))
+                        {
+                            PictureBox cntrl = (PictureBox)table.GetControlFromPosition(position.getRealCoord().first, position.getRealCoord().second);
+                            if(cntrl != null)
+                            {
+                                cntrl.Image = null;
+                            }
+                            
+                        }
+
+                    }
+                    second.Image = first.Image;
+                    first.Image = null;
+                    first = null;
+                }
+                
+                
+                
             }
             
+            
         }
-        // IDEA -> create 2 method - MakeFirstMove and MakeSecondMove in the Board class 
-        // passing starting and ending position 
 
 
+
+
+        
+        
         public void PictureBox_Click(object sender, EventArgs e)
         {
             PictureBox clicked = (PictureBox)sender;
-            
-            if (!secondClick) { 
+            int row = this.tblChessBoard.GetRow(clicked);
+            int col = this.tblChessBoard.GetColumn(clicked);
 
-                if(clicked.Image != null)
-                {
-                    
-                    int col = this.tblChessBoard.GetColumn(clicked);
-                    int row = this.tblChessBoard.GetRow(clicked);
-
-                    this.allowed = (board.getPiece(new Position(col, row))).getAllowedMoves(this.tblChessBoard, board);
-                    
-                    if(allowed != null)
-                    {    
-                        secondClick = true;
-                        firstClicked = clicked;
-                        colorMoves(allowed);
-                    }
-                    
-                }
-            }
-            else
+            if (clicked.Image != null)
             {
 
-                // Movement track: this.lblInfo.Text = board.getPiece(starting).p.toString("ideal");   and    board.getPiece(destination).p.toString("ideal");
-
-                int col = this.tblChessBoard.GetColumn(clicked);
-                int row = this.tblChessBoard.GetRow(clicked);
-                bool correct = false;
-                Position destination = new Position(col, row);
-                
-                if(allowed != null) { 
-
-                    foreach(Position p in allowed)
-                    {
-                        if (destination.equals(p))
-                        {
-                            correct = true;
-                        }
-                    }
-
-                    if (correct)
-                    {
-                        resetColouredMoves(this.allowed, destination);
-                        clicked.Image = firstClicked.Image;
-                        firstClicked.Image = null;
-                        secondClick = false;
-                        Position starting = new Position(this.tblChessBoard.GetColumn(firstClicked), this.tblChessBoard.GetRow(firstClicked));
-                        
-                        board.makeMove(board.getPiece(starting), destination);
-                        
-                    }
-                    else
-                    {
-                        secondClick = false;
-                        firstClicked = null;
-                        resetColouredMoves(this.allowed, destination);
-                        
-                    }
-                    this.allowed = null;
+                if (first == null)
+                {
+                    List<Position>? toColor = this.board.makeMove(new Position(col, row));
+                    first = clicked;
+                    colorMoves(toColor);
                 }
-                
+                else
+                {
+                    List<Position>? toUnColor = this.board.makeMove(new Position(col, row));
+                    if (toUnColor != null)
+                    {
+                        resetColouredMoves(toUnColor, clicked);
+                        List<Position> aiMove = this.board.randomAiMove();
+                        int colStart = aiMove[0].getRealCoord().first;
+                        int rowStart = aiMove[0].getRealCoord().second;
+                        PictureBox start = (PictureBox)this.tblChessBoard.GetControlFromPosition(colStart, rowStart);
+                        this.tblChessBoard.SetColumn(start, aiMove[1].getRealCoord().first);
+                        this.tblChessBoard.SetRow(start, aiMove[1].getRealCoord().second);
+
+                        
+                    }
+                    else {
+                        resetColouredMoves(this.backupAllowed, null);
+                        this.backupAllowed = null;
+                    }
+
+
+
+                }
             }
+              
 
         }
+
+
+
+        /** Place the pieces into the board */
+        public void placePieces()
+        {
+            // Adding pictureboxes with images
+            foreach (Piece piece in this.board.b_pieces)
+            {
+
+                PictureBox pb = new PictureBox() { Dock = DockStyle.Fill };
+                pb.ImageLocation = @"../../../Resources/pieces/" + piece.name + ".png";
+                pb.SizeMode = PictureBoxSizeMode.Zoom;
+
+                int row = piece.p.getRealCoord().second;
+                int col = piece.p.getRealCoord().first;
+                this.tblChessBoard.Controls.Add(pb, col, row);
+            }
+        }
+
 
 
         private void frmGame_Load(object sender, EventArgs e)
         {
-            ChessBoard board = new ChessBoard();
-            this.board = board;
-            board.initBoard();
-            TableLayoutPanel table = this.tblChessBoard;
-
-            board.placePieces(table);
-
-            foreach (Control ctrl in table.Controls)
-            {
-                ctrl.Click += PictureBox_Click;
-            }
+            
 
         }
+
+
+
+
 
     }
 

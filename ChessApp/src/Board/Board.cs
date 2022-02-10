@@ -24,14 +24,19 @@ namespace ChessApp.src.Board
         /**
          * Vector field that keep trace of all the pieces placed in the board
          */
-        protected List<Piece> b_pieces;
+        public List<Piece> b_pieces;
 
         /**
-         * String value representing the turn
+         * Bool value representing the turn, true if it's the user turn, false otherwise
          */
-        protected string player_turn;
+        public bool player_turn;
 
-        
+        private Position firstClicked;
+        private bool secondClick = false;
+        private List<Position>? allowed;
+
+
+
         public Board(int width, int height)
         {
             b_pieces = new List<Piece>();
@@ -63,30 +68,105 @@ namespace ChessApp.src.Board
          */
         public abstract void initBoard() ;
 
-        public abstract void placePieces(TableLayoutPanel tbl);
+        private void movePiece(Position start, Position end)
+        {
+            
+            this.getPiece(start).p = end;
+        }
+
 
         /**
          * Allow user to make a move
+         * @return a list of position to color or un-color
          */
-        public void makeMove(Piece p, Position end)
+        public List<Position>? makeMove(Position click)
         {
-            // TODO add eating logic
+            if (!secondClick)
+            {
+                this.allowed = (this.getPiece(click)).getAllowedMoves(this);
 
-            p.p = end;
+                if (allowed != null)
+                {
+                    secondClick = true;
+                    firstClicked = click;
+                }
+                return allowed;
+
+            }
+            else
+            {
+                // Movement track: this.lblInfo.Text = board.getPiece(starting).p.toString("ideal");   and    board.getPiece(destination).p.toString("ideal");
+
+                if (allowed != null)
+                {
+                    bool correct = false;
+                    foreach (Position p in allowed)
+                    {
+                        if (click.equals(p))
+                        {
+                            correct = true;
+                        }
+                    }
+                    if (correct)
+                    {
+                        movePiece(firstClicked, click);
+                        secondClick = false;
+                        return allowed;
+                    }
+                    else
+                    {
+                        secondClick = false;
+                        firstClicked = null;
+
+                    }
+                    secondClick = false;
+                }
+                return null;
+            }
+
         }
 
-        /**
-         * Check if a move is allowed in the board
-         * @return true if the move is allowed, false otherwise
-         */
-        public abstract bool allowedMove(List<Position> a);
+
+        public List<Position> randomAiMove()
+        {
+            Random rand = new Random();
+            Piece? pick;
+            List<Position> toReturn = new List<Position>();
+            Position ending = null;
+            Position starting = null;
+            do
+            {
+                int col = rand.Next(0, 8);
+                int row = rand.Next(0, 8);
+                System.Diagnostics.Debug.WriteLine("(" + col + ", " + row + ")");
+                pick = this.getPiece(new Position(col, row));
+                if (pick != null && !pick.owner)
+                {
+                    starting = pick.p;
+                    List<Position>? allow = pick.getAllowedMoves(this);
+                    
+                    if (allow != null)
+                    {
+                        int dest = rand.Next(0, allow.Count - 1);
+                        ending = allow[dest]; 
+
+                    }
+
+
+                }
+            }
+            while (pick == null || pick.owner || ending == null);
+            toReturn.Add(starting);
+            toReturn.Add(ending);
+            movePiece(starting, ending);
+            return toReturn;
+        }
+
 
         /**
          * Main game loop, every derived class will implements its own game logic
          */
         public abstract void run();
-
-
 
     }
 }
