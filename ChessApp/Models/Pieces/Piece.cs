@@ -1,6 +1,6 @@
 ﻿namespace ChessApp.Models.Pieces
 {
-    internal class Piece
+    class Piece
     {
         public string name;
         public string owner;
@@ -12,23 +12,16 @@
             this.name = name;
         }
 
-
-
-        protected static int abs(int param)
-        {
-            return (param < 0) ? param * (-1) : param;
-        }
-
         
 
-        /**
-         *  Return a valid vector containing all the position covered by the move if the move is valid
-         *  a nullptr otherwise
-         */
-        public virtual List<Position>? validMove(Position start, Position end)
+        
+        public virtual List<Position>? getAllowedMoves(Board board, Position start, Position end)
         {
             if (start.isValidPosition() && end.isValidPosition() && (!start.equals(end)))
+            {
+                System.Diagnostics.Debug.WriteLine("qui");
                 return new List<Position>();
+            }
             return null;
         }
 

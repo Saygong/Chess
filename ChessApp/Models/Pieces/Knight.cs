@@ -22,8 +22,10 @@ namespace ChessApp.Models.Pieces
 
         };
 
-        public List<Position> getValidMoves(ChessBoard board, Position start)
+        public override List<Position> getAllowedMoves(Board board, Position start, Position end)
         {
+            List<Position>?  valids = base.getAllowedMoves(board, start, end);
+            
             return Utility.getMoves(board, start, moveTemplates, 1);
 
 

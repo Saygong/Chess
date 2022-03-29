@@ -1,11 +1,106 @@
 ﻿
-@model ChessApp.Models.Board
+
+
+@model ChessApp.Models.Game
 @{
     ViewData["Title"] = "Chess Game";
     Layout = "/Pages/Shared/_Layout.cshtml";
 }
 
 
+<div class="centered">
+    <table class="table-border">
 
-<p>@Model.getPiece(0,0).toString()</p>
+    @{
+        @if(@Model != null){
+
+            @for(var i = 0; i < @Model.brd_dimension; i++)
+            {
+                <tr class= "table-border">
+                
+                    @for(var j = 0; j < @Model.brd_dimension; j++)
+                    {
+                            var piece = @Model.getCell(i, j);
+
+                            var background = (i + j) % 2 == 0 ? "white-bckgrnd-cell" : "gray-bckgrnd-cell";
+                            
+                            var id = i.ToString() + j.ToString();
+
+                            if(piece != "")
+                            {
+                                var path = "~/img/" + piece + ".png";
+                                
+                                
+                                <td class="table-border"> 
+                                    
+                                    <div id=@id class=@background ondrop="drop(event)" ondragover="allowDrop(event)"> 
+                                        <img id=@piece+@id src=@Url.Content(path) class="piece" draggable="true" ondragstart="drag(event)">
+                                    </div>
+                                </td>
+                            }
+                            else
+                            {
+                                <td class="table-border">
+                                    <div id=@id class=@background ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+                                </td>
+                            }
+                        
+                    }
+            
+                </tr>
+            }
+
+        }
+     }
+
+    </table>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    function allowDrop(ev) {
+      ev.preventDefault();
+    }
+
+    function drag(ev) {
+      ev.dataTransfer.setData("text", ev.target.id);
+      //console.log("Starting: " + ev.target.id);
+    }
+
+    function drop(ev) {
+      ev.preventDefault();
+      let data = ev.dataTransfer.getData("text");
+      var rowStart = parseInt(((document.getElementById(data).id).split("+")[1])[0]);
+      let colStart = ((document.getElementById(data).id).split("+")[1])[1];
+      let rowEnd = ev.target.id[0];
+      let colEnd = ev.target.id[1];
+
+      
+
+      $.ajax({
+         type: "POST",
+         url: '@Url.Action("check","Chess")',
+         data: { rowStart: rowStart, colStart: colStart, rowEnd: rowEnd, colEnd: colEnd},
+         dataType: "json",
+         success: function (res) {
+             console.log("Qui: "+ res);
+             let name = (document.getElementById(data).id).split("+")[0];
+            ev.target.appendChild(document.getElementById(data));
+            document.getElementById(data).id = name+"+"+ev.target.id
+         },
+         error: function (data) {
+             console.log("Qui, errore: "+ data);
+             //rollback();
+         }
+
+
+      });
+
+
+
+      
+    }
+</script>
+
 

@@ -19,7 +19,7 @@ namespace ChessApp.Models
 
 
 
-        public static List<Position> getMoves(ChessBoard board, Position start, int[][] moveTemplates, int range)
+        public static List<Position> getMoves(Board board, Position start, int[][] moveTemplates, int range)
         {
 
             if (board == null) throw new ArgumentNullException("board");
@@ -34,14 +34,15 @@ namespace ChessApp.Models
                     var deltaX = radius * mult[0];
                     var deltaY = radius * mult[1];
                     Position? toEat;
+
                     if (board.isValid(start.row + deltaY, start.col + deltaX, start.piece, out toEat))
                     {
-                        ret.Add(new Position(deltaY, deltaX));
+                        ret.Add(board.getPosition(start.row+deltaY,start.col+deltaX));
                     }
                     else
                     {
                         if (toEat != null)
-                            ret.Add(new Position(deltaY, deltaX));
+                            ret.Add(board.getPosition(start.row + deltaY, start.col + deltaX));
                         break;
                     }
                 }

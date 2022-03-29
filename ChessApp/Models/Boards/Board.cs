@@ -54,6 +54,11 @@ namespace ChessApp.Models
             else return null;
         }
 
+        public Position getPosition(int row, int col)
+        {
+            return board[row, col];
+        }
+
 
         public Piece? getPiece(int row, int col)
         {
@@ -64,13 +69,39 @@ namespace ChessApp.Models
             else return null;
         }
 
-        public void setPiece(Position pos, Piece piece)
+        public bool setPiece(int rowStart, int colStart, int rowEnd, int colEnd)
         {
             if (this.board != null)
             {
-                board[pos.row, pos.col].piece = piece;
+                
+                Piece? moving = this.board[rowStart, colStart].piece;
+
+                
+                if (moving != null)
+                {
+                    List<Position>? valids = (moving).getAllowedMoves(this, board[rowStart,colStart], board[rowEnd, colEnd]);
+
+                    System.Diagnostics.Debug.WriteLine("Tocheck: " + (this.getPosition(rowEnd, colEnd)).toString());
+                    System.Diagnostics.Debug.WriteLine(valids == null);
+                    foreach (Position pos in valids) {
+                        System.Diagnostics.Debug.WriteLine(pos.toString());
+
+                    }
+
+
+                    if (valids != null && valids.Contains(board[rowEnd, colEnd]))
+                    {
+                        System.Diagnostics.Debug.WriteLine(moving.toString());
+                        board[rowEnd, colEnd].piece = moving;
+                        board[rowStart, colStart].piece = null;
+                        return true;
+                    }
+                }
+                
             }
+            return false;
         }
+        
 
         /**
          * Check if a position is valid. Inside the ranges [A-H] and [1-8]
@@ -105,6 +136,13 @@ namespace ChessApp.Models
                 }
             }
             else throw new ArgumentNullException("Piece to move");
+        }
+
+
+
+        public int getDimension()
+        {
+            return ROW_SIZE;
         }
     }
 }

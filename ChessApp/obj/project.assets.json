@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\andre\\OneDrive\\Desktop\\Progetti\\ChessApp\\ChessApp\\ChessApp.csproj",
+      "projectUniqueName": "C:\\Users\\andre\\OneDrive\\Desktop\\Progetti\\Chess\\ChessApp\\ChessApp.csproj",
       "projectName": "ChessApp",
-      "projectPath": "C:\\Users\\andre\\OneDrive\\Desktop\\Progetti\\ChessApp\\ChessApp\\ChessApp.csproj",
+      "projectPath": "C:\\Users\\andre\\OneDrive\\Desktop\\Progetti\\Chess\\ChessApp\\ChessApp.csproj",
       "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\andre\\OneDrive\\Desktop\\Progetti\\ChessApp\\ChessApp\\obj\\",
+      "outputPath": "C:\\Users\\andre\\OneDrive\\Desktop\\Progetti\\Chess\\ChessApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
