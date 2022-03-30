@@ -29,7 +29,7 @@ namespace ChessApp.Models
         /**
          * Constructor <int, int>
          */
-        public Position(int col, int row)
+        public Position(int row, int col)
         {
             this.row = row;
             this.col = col;
@@ -59,7 +59,7 @@ namespace ChessApp.Models
          * Method that allow to represent a Position with a string
          * @return string
          */
-        public string toString()
+        public override string ToString()
         {
             return "( " + row + ", " + col + " )";
             

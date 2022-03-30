@@ -26,16 +26,21 @@ namespace ChessApp.Models
          */
         protected Position[,] board;
 
+
+        public bool isUserWhite;
+
        
 
         public Board()
         {
+            // Need to have this on 100 because i don't know how to let ai start
+            this.isUserWhite = Utility.random(100);
             board = new Position[ROW_SIZE, COLUMN_SIZE];
             for (int i = 0; i < ROW_SIZE; i++)
             {
                 for(int j = 0; j < COLUMN_SIZE; j++)
                 {
-                    board[j, i] = new Position(i, j);
+                    board[i, j] = new Position(i, j);
                 }
             }
 
@@ -70,7 +75,7 @@ namespace ChessApp.Models
             else return null;
         }
 
-        public Utility.MoveResult setPiece(int rowStart, int colStart, int rowEnd, int colEnd)
+        public Utility.MoveResult setPiece(int rowStart, int colStart, int rowEnd, int colEnd, string player)
         {
             if (this.board != null)
             {
@@ -81,10 +86,10 @@ namespace ChessApp.Models
                 if (moving != null)
                 {
 
-                    if(moving.owner == "user")
+                    if(moving.owner == player)
                     {
 
-                         List<Position>? valids = (moving).getAllowedMoves(this, board[rowStart,colStart], board[rowEnd, colEnd]);
+                         List<Position>? valids = (moving).getAllowedMoves(this, board[rowStart,colStart]);
 
                         /*
                         System.Diagnostics.Debug.WriteLine("Tocheck: " + (this.getPosition(rowEnd, colEnd)).toString());
@@ -112,7 +117,7 @@ namespace ChessApp.Models
                         return new Utility.MoveResult("invalid", "not allowed move ");
 
                     }
-                    return new Utility.MoveResult("invalid", "not user's piece");
+                    return new Utility.MoveResult("invalid", "not your piece");
 
                 }
                 return new Utility.MoveResult("invalid", "no piece is selected");

@@ -6,14 +6,12 @@ namespace ChessApp.Models.Boards
     class ChessBoard : Board
     {
 
-        bool isUserWhite;
         public int board_dimension = 8;
 
 
 
         public ChessBoard() : base()
         {
-            this.isUserWhite = Utility.random(50);
             initBoard();
         }
 

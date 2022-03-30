@@ -16,14 +16,28 @@ namespace ChessApp.Controllers
             return View("Chess", thisGame);
         }
 
-       public string check(int rowStart, int colStart, int rowEnd, int colEnd)
+        public string validateMove(int rowStart, int colStart, int rowEnd, int colEnd)
         {
             if (thisGame != null)
             {
-                return thisGame.makeMove(rowStart, colStart, rowEnd, colEnd);
+                
+                return thisGame.makeUserMove(rowStart, colStart, rowEnd, colEnd);
             }
             else throw new ArgumentNullException("No game available");
         }
+
+
+        public string generateAiMove()
+        {
+            if (thisGame != null)
+            {
+                
+                return thisGame.makeAiMove();
+            }
+            else throw new ArgumentNullException("No game available");
+        }
+
+
 
 
     }

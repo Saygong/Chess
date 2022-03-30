@@ -14,13 +14,21 @@ namespace ChessApp.Models.Pieces
 
         };
 
-        public override List<Position>? getAllowedMoves(Board board, Position start, Position end)
+        private readonly static int[][] aiMoveTemplates = new int[][]
+        {
+          new [] { 1, 0 },
+
+        };
+
+        public override List<Position>? getAllowedMoves(Board board, Position start)
         {
             
-            List<Position>? valids = base.getAllowedMoves(board, start, end);
+            List<Position>? valids = base.getAllowedMoves(board, start);
             if (valids != null)
             {
-                return Utility.getMoves(board, start, userMoveTemplates, 2);
+
+                int[][] template = this.owner == "user" ? userMoveTemplates : aiMoveTemplates;
+                return Utility.getMoves(board, start, template, 2);
             }
             else return null;
 

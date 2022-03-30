@@ -15,9 +15,9 @@
         
 
         
-        public virtual List<Position>? getAllowedMoves(Board board, Position start, Position end)
+        public virtual List<Position>? getAllowedMoves(Board board, Position start)
         {
-            if (Position.isValidPosition(start) && Position.isValidPosition(end) && (!start.equals(end)))
+            if (Position.isValidPosition(start))
             {
                 return new List<Position>();
             }

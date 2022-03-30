@@ -10,8 +10,25 @@ namespace ChessApp.Models
 
         internal class MoveResult
         {
-            public string result { get; set; }
-            public string description { get; set; }
+            public string result;
+            public string description;
+
+            public int rowS;
+            public int colS;
+            public int rowE;
+            public int colE;
+
+
+
+            public MoveResult(string r, string desc, Position p, Position p1)
+            {
+                this.result = r;
+                this.description = desc;
+                rowS = p.row;
+                colS = p.col;
+                rowE = p1.row;
+                colE = p1.col;
+            }
 
             public MoveResult(string r, string desc)
             {
@@ -19,9 +36,16 @@ namespace ChessApp.Models
                 this.description = desc;
             }
 
+            
+
             public string convert()
             {
                 return JsonConvert.SerializeObject(this);
+            }
+
+            public string getResult()
+            {
+                return this.result;
             }
 
 
@@ -79,7 +103,5 @@ namespace ChessApp.Models
 
 
     }
-
-
 
 }
