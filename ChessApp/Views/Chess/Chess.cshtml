@@ -84,14 +84,18 @@
          data: { rowStart: rowStart, colStart: colStart, rowEnd: rowEnd, colEnd: colEnd},
          dataType: "json",
          success: function (res) {
-             console.log("Qui: "+ res);
-             let name = (document.getElementById(data).id).split("+")[0];
-            ev.target.appendChild(document.getElementById(data));
-            document.getElementById(data).id = name+"+"+ev.target.id
+             if(res.result == "valid"){
+                 let name = (document.getElementById(data).id).split("+")[0];
+                 ev.target.appendChild(document.getElementById(data));
+                 document.getElementById(data).id = name+"+"+ev.target.id
+             }
+             else{
+                 //showError()
+                 alert(res.description);
+             }
          },
          error: function (data) {
-             console.log("Qui, errore: "+ data);
-             //rollback();
+             console.log("An error occurred: "+ data);
          }
 
 

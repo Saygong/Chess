@@ -17,9 +17,8 @@
         
         public virtual List<Position>? getAllowedMoves(Board board, Position start, Position end)
         {
-            if (start.isValidPosition() && end.isValidPosition() && (!start.equals(end)))
+            if (Position.isValidPosition(start) && Position.isValidPosition(end) && (!start.equals(end)))
             {
-                System.Diagnostics.Debug.WriteLine("qui");
                 return new List<Position>();
             }
             return null;

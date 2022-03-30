@@ -1,6 +1,7 @@
 ﻿
 using ChessApp.Models.Pieces;
 
+
 //
 // Created by andrea on 23/01/2022.
 //
@@ -34,7 +35,7 @@ namespace ChessApp.Models
             {
                 for(int j = 0; j < COLUMN_SIZE; j++)
                 {
-                    board[i, j] = new Position(i, j);
+                    board[j, i] = new Position(i, j);
                 }
             }
 
@@ -69,7 +70,7 @@ namespace ChessApp.Models
             else return null;
         }
 
-        public bool setPiece(int rowStart, int colStart, int rowEnd, int colEnd)
+        public Utility.MoveResult setPiece(int rowStart, int colStart, int rowEnd, int colEnd)
         {
             if (this.board != null)
             {
@@ -79,27 +80,45 @@ namespace ChessApp.Models
                 
                 if (moving != null)
                 {
-                    List<Position>? valids = (moving).getAllowedMoves(this, board[rowStart,colStart], board[rowEnd, colEnd]);
 
-                    System.Diagnostics.Debug.WriteLine("Tocheck: " + (this.getPosition(rowEnd, colEnd)).toString());
-                    System.Diagnostics.Debug.WriteLine(valids == null);
-                    foreach (Position pos in valids) {
-                        System.Diagnostics.Debug.WriteLine(pos.toString());
-
-                    }
-
-
-                    if (valids != null && valids.Contains(board[rowEnd, colEnd]))
+                    if(moving.owner == "user")
                     {
-                        System.Diagnostics.Debug.WriteLine(moving.toString());
-                        board[rowEnd, colEnd].piece = moving;
-                        board[rowStart, colStart].piece = null;
-                        return true;
+
+                         List<Position>? valids = (moving).getAllowedMoves(this, board[rowStart,colStart], board[rowEnd, colEnd]);
+
+                        /*
+                        System.Diagnostics.Debug.WriteLine("Tocheck: " + (this.getPosition(rowEnd, colEnd)).toString());
+                    
+                        foreach (Position pos in valids) {
+                            System.Diagnostics.Debug.WriteLine(pos.toString());
+
+                        }
+                        */
+
+                        if (valids != null && valids.Contains(board[rowEnd, colEnd]))
+                        {
+
+                            board[rowEnd, colEnd].piece = moving;
+                            if ( typeof(PawnTwoMoves).IsInstanceOfType(moving))
+                            {
+                                PawnOneMove toChange = new PawnOneMove(moving.owner, moving.name);
+                                board[rowEnd, colEnd].piece = toChange;
+                            }
+
+                            board[rowStart, colStart].piece = null;
+                            return new Utility.MoveResult("valid", "none");
+                        
+                        }
+                        return new Utility.MoveResult("invalid", "not allowed move ");
+
                     }
+                    return new Utility.MoveResult("invalid", "not user's piece");
+
                 }
-                
+                return new Utility.MoveResult("invalid", "no piece is selected");
+
             }
-            return false;
+            return new Utility.MoveResult("invalid", "board not initialized");
         }
         
 
@@ -112,7 +131,7 @@ namespace ChessApp.Models
             if (toMove != null)
             {
                 eat = null;
-                if ((board[row, col]).isValidPosition())
+                if (Position.isValidPosition(row, col) == true)
                 {
 
                     Piece? destination = board[row, col].piece;

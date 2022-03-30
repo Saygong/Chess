@@ -39,9 +39,9 @@ namespace ChessApp.Models.Boards
             // Placing pawns
             for (int i = 0; i < 8; i++)
             {
-                this.board[6,i].piece = new Pawn("user", userPrefix + "Pawn");
+                this.board[6,i].piece = new PawnTwoMoves("user", userPrefix + "Pawn");
 
-                this.board[1,i].piece = new Pawn("ai", pcPrefix + "Pawn");
+                this.board[1,i].piece = new PawnTwoMoves("ai", pcPrefix + "Pawn");
 
             }
 

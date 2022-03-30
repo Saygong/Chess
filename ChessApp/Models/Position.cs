@@ -61,7 +61,7 @@ namespace ChessApp.Models
          */
         public string toString()
         {
-            return "( " + col + ", " + row + " )";
+            return "( " + row + ", " + col + " )";
             
         }
 
@@ -69,9 +69,16 @@ namespace ChessApp.Models
          * Check if a position is valid. Inside the ranges [A-H] and [1-8]
          * @return true if the position is valid, false otherwise
          */
-        public bool isValidPosition()
+        public static bool isValidPosition(int row, int col)
         {
-            if (row > 8 || row < 0 || col > 8 || row < 0)
+            if (row > 7 || row < 0 || col > 7 || col < 0)
+                return false;
+            return true;
+        }
+
+        public static bool isValidPosition(Position p)
+        {
+            if (p.row > 7 || p.row < 0 || p.col > 7 || p.row < 0)
                 return false;
             return true;
         }

@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Text.Encodings.Web;
-using ChessApp.Models.Boards;
 using ChessApp.Models;
 
 namespace ChessApp.Controllers
@@ -8,7 +6,7 @@ namespace ChessApp.Controllers
     public class ChessController : Controller
     {
 
-        Game? thisGame = new Game();
+        Game thisGame = Game.getInstance();
 
 
         public IActionResult Index()
@@ -18,7 +16,7 @@ namespace ChessApp.Controllers
             return View("Chess", thisGame);
         }
 
-       public bool check(int rowStart, int colStart, int rowEnd, int colEnd)
+       public string check(int rowStart, int colStart, int rowEnd, int colEnd)
         {
             if (thisGame != null)
             {

@@ -1,6 +1,5 @@
 ﻿
 using ChessApp.Models.Boards;
-
 using ChessApp.Models.Pieces;
 
 namespace ChessApp.Models
@@ -9,23 +8,36 @@ namespace ChessApp.Models
     {
         private Board brd;
         public int brd_dimension;
+        private static Game game = null;
 
 
-        public Game()
+        private Game()
         {
             this.brd = new ChessBoard();
             this.brd_dimension = brd.getDimension();
         }
 
 
-        public bool makeMove(int rowStart, int colStart, int rowEnd, int colEnd)
+        public static Game getInstance()
+        {
+            // Crea l'oggetto solo se NON esiste:
+            if (game == null)
+            {
+                game = new Game();
+            }
+            return game;
+        }
+
+
+        public string makeMove(int rowStart, int colStart, int rowEnd, int colEnd)
         {
             
             if (this.brd != null)
             {
                 
-                return brd.setPiece(rowStart, colStart, rowEnd, colEnd);
-                
+                Utility.MoveResult res = brd.setPiece(rowStart, colStart, rowEnd, colEnd);
+                return res.convert();
+
             }
             else throw new ArgumentNullException("Board not initiated");
 

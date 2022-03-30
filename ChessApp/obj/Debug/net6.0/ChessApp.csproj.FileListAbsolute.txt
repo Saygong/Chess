@@ -50,3 +50,5 @@ C:\Users\andre\OneDrive\Desktop\Progetti\Chess\ChessApp\obj\Debug\net6.0\ChessAp
 C:\Users\andre\OneDrive\Desktop\Progetti\Chess\ChessApp\obj\Debug\net6.0\ref\ChessApp.dll
 C:\Users\andre\OneDrive\Desktop\Progetti\Chess\ChessApp\obj\Debug\net6.0\ChessApp.pdb
 C:\Users\andre\OneDrive\Desktop\Progetti\Chess\ChessApp\obj\Debug\net6.0\ChessApp.genruntimeconfig.cache
+C:\Users\andre\OneDrive\Desktop\Progetti\Chess\ChessApp\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\andre\OneDrive\Desktop\Progetti\Chess\ChessApp\obj\Debug\net6.0\ChessApp.csproj.CopyComplete

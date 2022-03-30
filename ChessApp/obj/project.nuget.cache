@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "k9vstRXpbR2YVgbw4scvHS+bjj3a/h/+OZ91ZkW/Qyq2uAv3ZcAGZovI03go0V6J7O3wHYUnO+six2F9U7rR6A==",
+  "dgSpecHash": "WAI/NNl7frmNqi0o0dCp88RT2Ed/tqFa6/BkFPC1YhVuGOTH7yN0PiI8MbgOpBeTwkYkWJ1zjXorLxQX05tcVA==",
   "success": true,
   "projectFilePath": "C:\\Users\\andre\\OneDrive\\Desktop\\Progetti\\Chess\\ChessApp\\ChessApp.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\andre\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
   "logs": []
 }
