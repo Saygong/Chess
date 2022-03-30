@@ -118,7 +118,7 @@ function aiMove() {
 		dataType: "json",
 		success: function (res) {
 			if (res.result == "valid") {
-
+				console.log(JSON.stringify(res));
 				moveAndRename(res.rowS.toString(), res.colS.toString(), res.rowE.toString(), res.colE.toString());
 
 			}

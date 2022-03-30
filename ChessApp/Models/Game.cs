@@ -23,7 +23,7 @@ namespace ChessApp.Models
 
         public static Game getInstance()
         {
-            // Crea l'oggetto solo se NON esiste:
+
             if (game == null)
             {
                 game = new Game();
@@ -61,9 +61,9 @@ namespace ChessApp.Models
             if (this.brd != null)
             {
                 Thread.Sleep(1000);
-                AI test = new AI();
+                AI aiPlayer = AI.getInstance(this.brd);
                 turn = true;
-                return test.makeRandomMove(this.brd);
+                return aiPlayer.makeStudiedMove();
                 
 
             }
