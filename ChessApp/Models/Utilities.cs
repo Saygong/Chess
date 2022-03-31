@@ -36,7 +36,17 @@ namespace ChessApp.Models
                 this.description = desc;
             }
 
-            
+            public MoveResult(MoveResult toCopy)
+            {
+                this.result = toCopy.result;
+                this.description = toCopy.description;
+                this.rowS = toCopy.rowS;
+                this.colS = toCopy.colS;
+                this.rowE = toCopy.rowE;
+                this.colE = toCopy.colE;
+            }
+
+
 
             public string convert()
             {
@@ -89,7 +99,7 @@ namespace ChessApp.Models
                     else
                     {
                         if (toEat != null)
-                            ret.Add(board.getPosition(start.row + deltaX, start.col + deltaY));
+                            ret.Add(toEat);
                         break;
                     }
                 }

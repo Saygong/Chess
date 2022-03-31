@@ -43,6 +43,7 @@ namespace ChessApp.Models
                     if (res.getResult() == "valid")
                     {
                         turn = false;
+
                     }
                     return res.convert();
                 }
@@ -63,8 +64,10 @@ namespace ChessApp.Models
                 Thread.Sleep(1000);
                 AI aiPlayer = AI.getInstance(this.brd);
                 turn = true;
-                return aiPlayer.makeStudiedMove();
                 
+                Utility.MoveResult selectedMove = aiPlayer.makeStudiedMove();
+                
+                return brd.setPiece(selectedMove.rowS, selectedMove.colS, selectedMove.rowE, selectedMove.colE, "ai").convert();
 
             }
             else throw new ArgumentNullException("Board not initiated");
@@ -83,6 +86,21 @@ namespace ChessApp.Models
                 return p.name;
             }
             else return "";
+        }
+
+
+
+        public void debugBoardState()
+        {
+            for(int i = 0; i < this.brd_dimension; i++)
+            {
+                for(int j = 0; j < this.brd_dimension; j++)
+                {
+                    Position p = this.brd.getPosition(i, j);
+                    System.Diagnostics.Debug.Write(p.prettyPrint());
+                }
+                System.Diagnostics.Debug.WriteLine(" ");
+            }
         }
 
 

@@ -1,7 +1,11 @@
 ﻿
+using ChessApp.Models.Pieces.Pawns;
+using System.Linq;
+using System.Collections.Generic;
+
 namespace ChessApp.Models.Pieces
 {
-    class PawnTwoMoves : Piece
+    class PawnTwoMoves : Pawn
     {
 
         public PawnTwoMoves(string own, string name) : base(own, name) { }
@@ -23,14 +27,19 @@ namespace ChessApp.Models.Pieces
         public override List<Position>? getAllowedMoves(Board board, Position start)
         {
             
-            List<Position>? valids = base.getAllowedMoves(board, start);
-            if (valids != null)
+            List<Position>? eating = base.getAllowedMoves(board, start);
+            if (eating != null)
             {
-
                 int[][] template = this.owner == "user" ? userMoveTemplates : aiMoveTemplates;
-                return Utility.getMoves(board, start, template, 2);
+
+                List<Position>? valids = this.getPawnMoves(board, start, template, 2);
+                if(valids != null)
+                {
+                    return valids.Concat(eating).ToList();
+                }
+                
             }
-            else return null;
+            return null;
 
         }
 

@@ -104,6 +104,7 @@ namespace ChessApp.Models
                         {
 
                             board[rowEnd, colEnd].piece = moving;
+
                             if ( typeof(PawnTwoMoves).IsInstanceOfType(moving))
                             {
                                 PawnOneMove toChange = new PawnOneMove(moving.owner, moving.name);
@@ -111,16 +112,16 @@ namespace ChessApp.Models
                             }
 
                             board[rowStart, colStart].piece = null;
-                            return new Utility.MoveResult("valid", "none");
+                            return new Utility.MoveResult("valid", "none", board[rowStart, colStart], board[rowEnd, colEnd]);
                         
                         }
-                        return new Utility.MoveResult("invalid", "not allowed move ");
+                        return new Utility.MoveResult("invalid", "not allowed move", board[rowStart, colStart], board[rowEnd, colEnd]);
 
                     }
-                    return new Utility.MoveResult("invalid", "not your piece");
+                    return new Utility.MoveResult("invalid", "not your piece", board[rowStart, colStart], board[rowEnd, colEnd]);
 
                 }
-                return new Utility.MoveResult("invalid", "no piece is selected");
+                return new Utility.MoveResult("invalid", "no piece is selected", board[rowStart, colStart], board[rowEnd, colEnd]);
 
             }
             return new Utility.MoveResult("invalid", "board not initialized");
@@ -131,15 +132,15 @@ namespace ChessApp.Models
          * Check if a position is valid. Inside the ranges [A-H] and [1-8]
          * @return true if the position is valid, false otherwise
          */
-        public bool isValid(int row, int col, Piece? toMove, out Position? eat)
+        public bool isValid(int destRow, int destCol, Piece? toMove, out Position? eat)
         {
             if (toMove != null)
             {
                 eat = null;
-                if (Position.isValidPosition(row, col) == true)
+                if (Position.isValidPosition(destRow, destCol) == true)
                 {
 
-                    Piece? destination = board[row, col].piece;
+                    Piece? destination = board[destRow, destCol].piece;
                     if (destination != null)
                     {
                         if (destination.owner.Equals(toMove.owner))
@@ -148,7 +149,7 @@ namespace ChessApp.Models
                         }
                         else
                         {
-                            eat = board[row, col];
+                            eat = board[destRow, destCol];
                             return false;
                         }
                     }

@@ -8,52 +8,58 @@
 }
 
 
-<div class="centered">
-	<table class="table-border">
+<div class="centered grid-container">
+	<div>
+		<table class="table-border">
 
-	@{
-		@if(@Model != null){
+		@{
+			@if(@Model != null){
 
-			@for(var i = 0; i < @Model.brd_dimension; i++)
-			{
-				<tr class= "table-border">
+				@for(var i = 0; i < @Model.brd_dimension; i++)
+				{
+					<tr class= "table-border">
 				
-					@for(var j = 0; j < @Model.brd_dimension; j++)
-					{
-							var piece = @Model.getCell(i, j);
+						@for(var j = 0; j < @Model.brd_dimension; j++)
+						{
+								var piece = @Model.getCell(i, j);
 
-							var background = (i + j) % 2 == 0 ? "white-bckgrnd-cell" : "gray-bckgrnd-cell";
+								var background = (i + j) % 2 == 0 ? "white-bckgrnd-cell" : "gray-bckgrnd-cell";
 							
-							var id = i.ToString() + j.ToString();
+								var id = i.ToString() + j.ToString();
 
-							if(piece != "")
-							{
-								var path = "~/img/" + piece + ".png";
+								if(piece != "")
+								{
+									var path = "~/img/" + piece + ".png";
 								
 								
-								<td class="table-border"> 
+									<td class="table-border"> 
 									
-									<div id=@id class=@background ondrop="drop(event)" ondragover="allowDrop(event)"> 
-										<img id=@piece+@id src=@Url.Content(path) class="piece" draggable="true" ondragstart="drag(event)">
-									</div>
-								</td>
-							}
-							else
-							{
-								<td class="table-border">
-									<div id=@id class=@background ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
-								</td>
-							}
+										<div id=@id class=@background ondrop="drop(event)" ondragover="allowDrop(event)"> 
+											<img id=@piece+@id src=@Url.Content(path) class="piece" draggable="true" ondragstart="drag(event)">
+										</div>
+									</td>
+								}
+								else
+								{
+									<td class="table-border">
+										<div id=@id class=@background ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+									</td>
+								}
 						
-					}
+						}
 			
-				</tr>
+					</tr>
+				}
+
 			}
+		 }
 
-		}
-	 }
-
-	</table>
+		</table>
+	</div>
+	<div class="list-container">
+		<div id="moveList">
+		</div>
+	</div>
 </div>
 
 
@@ -76,9 +82,19 @@ function drop(ev) {
 	let nameAndPosition = ev.dataTransfer.getData("text");
 	var rowStart = parseInt(((document.getElementById(nameAndPosition).id).split("+")[1])[0]);
 	let colStart = ((document.getElementById(nameAndPosition).id).split("+")[1])[1];
-	let rowEnd = ev.target.id[0];
-	let colEnd = ev.target.id[1];
+	let destinationName = ev.target.id;
+	let rowEnd, colEnd;
+	
+	if (destinationName.length > 2){
+		rowEnd = (destinationName.split("+")[1])[0];
+		colEnd = (destinationName.split("+")[1])[1];
+	}
+	else {
+		rowEnd = destinationName[0];
+		colEnd = destinationName[1];
+	}
 
+	
 
 	$.ajax({
 		type: "POST",
@@ -90,9 +106,21 @@ function drop(ev) {
 			if (res.result == "valid") {
 				
 				let name = (document.getElementById(nameAndPosition).id).split("+")[0];
-                ev.target.appendChild(document.getElementById(nameAndPosition));
-                document.getElementById(nameAndPosition).id = name+"+"+ev.target.id
+				// E' td se la tabella è vuota, è div se c'è l'immagine
 
+				let container = ev.target.parentNode;
+				
+				if(container.id == rowEnd.toString()+colEnd.toString()){
+					container.removeChild(container.firstElementChild);
+					container.appendChild(document.getElementById(nameAndPosition));
+					document.getElementById(nameAndPosition).id = name+"+"+container.id
+				}
+				else{
+					ev.target.appendChild(document.getElementById(nameAndPosition));
+					document.getElementById(nameAndPosition).id = name+"+"+ev.target.id
+				}
+                
+				storeMove(rowStart, colStart, rowEnd, colEnd);
 				aiMove();
 			}
 			else {
@@ -118,9 +146,9 @@ function aiMove() {
 		dataType: "json",
 		success: function (res) {
 			if (res.result == "valid") {
-				console.log(JSON.stringify(res));
+				
 				moveAndRename(res.rowS.toString(), res.colS.toString(), res.rowE.toString(), res.colE.toString());
-
+				
 			}
 			else {
 				alert(res.description);
@@ -135,16 +163,34 @@ function aiMove() {
 
 
 function moveAndRename(rowS, colS, rowE, colE, name){
-	let element = document.getElementById(rowS+colS).firstElementChild;
-	element.id = (element.id.split("+")[0]) + "+" + rowE + colE;
+	let pieceToMove = document.getElementById(rowS+colS).firstElementChild;
+	pieceToMove.id = (pieceToMove.id.split("+")[0]) + "+" + rowE + colE;
 	document.getElementById(rowS+colS).firstElementChild = null;
-	document.getElementById(rowE+colE).appendChild(element);
+	let destinationPosition = document.getElementById(rowE+colE)
+	if(destinationPosition.firstElementChild != null){
+		destinationPosition.removeChild(destinationPosition.firstElementChild);
+	}
+	
+	storeMove(rowS, colS, rowE, colE);
+	destinationPosition.appendChild(pieceToMove);
 }
 	
+function storeMove(rowS, colS, rowE, colE){
 
+	let container = document.getElementById("moveList");
+	let child = document.createElement("div");
+
+	let matchCol = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+	let matchRow = ['8', '7', '6', '5', '4', '3', '2', '1'];
+
+	child.appendChild(document.createTextNode("(" + matchCol[colS] + ", " + matchRow[rowS] + ") -> (" + matchCol[colE] + ", " + matchRow[rowE] + ")"));
+	child.classList.add("newest-list-item");
+	if(container.children[0] != null)
+		container.children[0].classList.remove("newest-list-item");
+	container.insertBefore(child, container.children[0]);
+
+}
 	
-
-
 
 </script>
 

@@ -35,15 +35,44 @@ namespace ChessApp.Models
             {
                 ai = new AI(brd);
             }
+            
             return ai;
         }
 
 
-
-
-        public string makeRandomMove()
+        private void updatePieceSet()
         {
+            List<Position> newPieceSet = new List<Position>();
 
+            for (int i = 0; i < brd.getDimension(); i++)
+            {
+                for (int j = 0; j < brd.getDimension(); j++)
+                {
+                    Position p = brd.getPosition(i, j);
+                    if (p.piece != null)
+                    {
+                        if (p.piece.owner == "ai")
+                            newPieceSet.Add(p);
+                    }
+                }
+            }
+            this.pieceSet = newPieceSet;
+        }
+
+
+
+        public static void debugPieceSet(AI ai) { 
+            foreach(Position p in ai.pieceSet)
+            {
+                System.Diagnostics.Debug.Write(p.prettyPrint());
+            }
+        }
+
+
+
+        public Utility.MoveResult makeRandomMove()
+        {
+            updatePieceSet();
             Board board = this.brd;
             
             int row = (new Random()).Next(0, 7);
@@ -71,7 +100,7 @@ namespace ChessApp.Models
                             res.rowE = ending.row;
                             res.colE = ending.col;
                             
-                            return res.convert();
+                            return res;
                         }
 
                         
@@ -83,20 +112,20 @@ namespace ChessApp.Models
 
 
             }
-            return new Utility.MoveResult("invalid", "no moves found").convert();
+            return new Utility.MoveResult("invalid", "no moves found");
         
         }
 
-        public string makeStudiedMove()
+        public Utility.MoveResult makeStudiedMove()
         {
+            updatePieceSet();
             int bestOutcome = -1;
             Utility.MoveResult? bestResult = null;
 
-            for(int i = 0; i < pieceSet.Count(); i++)
+            foreach(Position p in this.pieceSet)
             {
-                int outcome = 0;
-
-                Position p = pieceSet[i];
+                int pieceOutcome = -1;
+                Utility.MoveResult? pieceResult = null;
                 List<Position>? moves = null;
 
                 if (p.piece != null)
@@ -106,61 +135,66 @@ namespace ChessApp.Models
 
                     foreach(Position possible in moves)
                     {
-                        int bestMove = 0;
-                        Utility.MoveResult moveDesc = new Utility.MoveResult("valid", "none");
+                        int outcome = 0;
+                        Utility.MoveResult? result = new Utility.MoveResult("valid", "none");
+
                         if (possible.row > 2 && possible.row < 5)
                         {
-                            bestMove += 1;
                             if (possible.col > 2 && possible.col < 5)
-                                bestMove += 2;
+                                outcome += 2;
                         }
-                                
 
-                        if(possible.piece != null  && possible.piece.owner == "user")
+                        result.rowS = p.row;
+                        result.colS = p.col;
+                        result.rowE = possible.row;
+                        result.colE = possible.col;
+
+                        if (possible.piece != null && possible.piece.owner == "user")
+                        {
                             switch (possible.piece.name)
                             {
                                 case "wPawn":
-                                    bestMove += 1;
+                                    outcome += 2;
                                     break;
                                 case "wKnight":
-                                    bestMove += 3;
+                                    outcome += 3;
                                     break;
                                 case "wBishop":
-                                    bestMove += 4;
+                                    outcome += 4;
                                     break;
                                 case "wRook":
-                                    bestMove += 5;
+                                    outcome += 5;
                                     break;
                                 case "wQueen":
-                                    bestMove += 10;
+                                    outcome += 10;
                                     break;
                             }
+                        }
 
-                        moveDesc.rowS = p.row;
-                        moveDesc.colS = p.col;
-                        moveDesc.rowE = possible.row;
-                        moveDesc.colE = possible.col;
 
-                        if (bestMove > outcome)
+                        if (outcome > pieceOutcome)
                         {
-                            outcome = bestMove;
-                            bestResult = moveDesc;
+                            pieceOutcome = outcome;
+                            pieceResult = new Utility.MoveResult(result);
                         }
 
 
                     }
                 }
 
-                if (outcome > bestOutcome)
-                    bestOutcome = outcome;
+                if (pieceOutcome > bestOutcome)
+                {
+                    bestOutcome = pieceOutcome;
+                    bestResult = new Utility.MoveResult(pieceResult);
+                }
             
             }
             if (bestResult == null)
                 return makeRandomMove();
             else
             {
-                this.brd.setPiece(bestResult.rowS, bestResult.colS, bestResult.rowE, bestResult.colE, "ai");
-                return bestResult.convert();
+                
+                return bestResult;
             }
 
 

@@ -65,6 +65,27 @@ namespace ChessApp.Models
             
         }
 
+
+        public string prettyPrint()
+        {
+            if(this.piece == null)
+            {
+                return "         ";
+            }
+            else
+            {
+                string toPrint = "  ";
+                for (int i = 0; i < 5; i++)
+                {
+                    toPrint += this.piece.name[i];
+                }
+                toPrint += "  ";
+                return toPrint;
+            }
+
+        }
+
+
         /**
          * Check if a position is valid. Inside the ranges [A-H] and [1-8]
          * @return true if the position is valid, false otherwise
