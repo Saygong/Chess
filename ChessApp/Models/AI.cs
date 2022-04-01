@@ -116,6 +116,10 @@ namespace ChessApp.Models
         
         }
 
+
+
+
+        // TODO : MINMAX on 2/3 step that add points to the move if ends with a eat, loss point if ends with an own piece get eated
         public Utility.MoveResult makeStudiedMove()
         {
             updatePieceSet();
@@ -166,7 +170,7 @@ namespace ChessApp.Models
                                     outcome += 5;
                                     break;
                                 case "wQueen":
-                                    outcome += 10;
+                                    outcome += 8;
                                     break;
                             }
                         }

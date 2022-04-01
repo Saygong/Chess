@@ -106,7 +106,7 @@ function drop(ev) {
 			if (res.result == "valid") {
 				
 				let name = (document.getElementById(nameAndPosition).id).split("+")[0];
-				// E' td se la tabella è vuota, è div se c'è l'immagine
+				
 
 				let container = ev.target.parentNode;
 				
@@ -183,7 +183,7 @@ function storeMove(rowS, colS, rowE, colE){
 	let matchCol = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 	let matchRow = ['8', '7', '6', '5', '4', '3', '2', '1'];
 
-	child.appendChild(document.createTextNode("(" + matchCol[colS] + ", " + matchRow[rowS] + ") -> (" + matchCol[colE] + ", " + matchRow[rowE] + ")"));
+	child.appendChild(document.createTextNode("(" + matchCol[colS] + ", " + matchRow[rowS] + ")  ->  (" + matchCol[colE] + ", " + matchRow[rowE] + ")"));
 	child.classList.add("newest-list-item");
 	if(container.children[0] != null)
 		container.children[0].classList.remove("newest-list-item");
