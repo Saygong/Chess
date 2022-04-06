@@ -5,7 +5,7 @@ namespace ChessApp.Models.Pieces
 {
     class Bishop : Piece
     {
-
+        public static int range = 8;
         public Bishop(string own, string name) : base(own, name) { }
 
         private readonly static int[][] moveTemplates = new int[][]
@@ -23,7 +23,7 @@ namespace ChessApp.Models.Pieces
             List<Position>? valids = base.getAllowedMoves(board, start);
             if (valids != null)
             {
-                return Utility.getMoves(board, start, moveTemplates, board.getDimension());
+                return Utility.getMoves(board, start, moveTemplates, range);
             }
             else return null;
         }

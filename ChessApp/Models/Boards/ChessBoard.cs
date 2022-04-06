@@ -66,12 +66,54 @@ namespace ChessApp.Models.Boards
 
         }
 
+        private void updateCellsProtection() {
 
+            for (int i = 0; i < ROW_SIZE; i++)
+            {
+                for (int j = 0; j < COLUMN_SIZE; j++)
+                {
+
+                    Position p = board[i, j];
+                    if (p.piece != null)
+                    {
+                        
+                        p.resetProtection();
+                        List<Position>? coverage = p.piece.getAllowedMoves(this, p);
+                        if(coverage != null)
+                        {
+                            foreach(Position pos in coverage)
+                            {
+                                pos.setProtection(p.piece.owner);
+                            }
+                        }
+                        
+
+
+                    }
+                }
+            }
+        }
 
         /** Return 0 if White is checked, 1 if Black is checked, -1 if neither. */
         public int check()
         {
-            return 1;
+            updateCellsProtection();
+            for (int i = 0; i < ROW_SIZE; i++)
+            {
+                for (int j = 0; j < COLUMN_SIZE; j++)
+                {
+                    Position pos = board[i, j];
+                    if (pos.piece != null)
+                    {
+                        if (pos.piece.name == "bKing" && board[i, j].isThreatened("black"))
+                            return 1;
+                        else if (pos.piece.name == "wKing" && board[i, j].isThreatened("white"))
+                            return 0;
+
+                    }
+                }
+            }
+            return -1;
         }
 
         /** Return 1 if a stalemate is reached, 0 if not. */

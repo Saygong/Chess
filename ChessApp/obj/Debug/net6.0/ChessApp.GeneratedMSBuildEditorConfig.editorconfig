@@ -8,37 +8,37 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ChessApp
 build_property.RootNamespace = ChessApp
-build_property.ProjectDir = C:\Users\andre\Desktop\Chess\ChessApp\
+build_property.ProjectDir = C:\Users\andre\OneDrive\Desktop\Progetti\Chess\ChessApp\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\andre\Desktop\Chess\ChessApp
+build_property.MSBuildProjectDirectory = C:\Users\andre\OneDrive\Desktop\Progetti\Chess\ChessApp
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/andre/Desktop/Chess/ChessApp/Pages/Error.cshtml]
+[C:/Users/andre/OneDrive/Desktop/Progetti/Chess/ChessApp/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/andre/Desktop/Chess/ChessApp/Pages/Index.cshtml]
+[C:/Users/andre/OneDrive/Desktop/Progetti/Chess/ChessApp/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/andre/Desktop/Chess/ChessApp/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/andre/OneDrive/Desktop/Progetti/Chess/ChessApp/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/andre/Desktop/Chess/ChessApp/Pages/_ViewImports.cshtml]
+[C:/Users/andre/OneDrive/Desktop/Progetti/Chess/ChessApp/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/andre/Desktop/Chess/ChessApp/Pages/_ViewStart.cshtml]
+[C:/Users/andre/OneDrive/Desktop/Progetti/Chess/ChessApp/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/andre/Desktop/Chess/ChessApp/Views/Chess/Chess.cshtml]
+[C:/Users/andre/OneDrive/Desktop/Progetti/Chess/ChessApp/Views/Chess/Chess.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hlc3NcQ2hlc3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/andre/Desktop/Chess/ChessApp/Pages/Shared/_Layout.cshtml]
+[C:/Users/andre/OneDrive/Desktop/Progetti/Chess/ChessApp/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-ror8ddqo9e

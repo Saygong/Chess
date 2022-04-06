@@ -25,7 +25,20 @@ namespace ChessApp.Models
          * Field containing the pieces in this position, null if the cell is empty
          */
         public Piece? piece;
-        
+
+        /**
+         * Boolean field representing wether or not white is protecting the cell
+         */
+        private bool isProtectedByWhite = false;
+
+
+        /**
+         * Boolean field representing wether or not black is protecting the cell
+         */
+        private bool isProtectedByBlack = false;
+
+
+
         /**
          * Constructor <int, int>
          */
@@ -42,6 +55,35 @@ namespace ChessApp.Models
             this.col = col;
             this.piece = piece;
         }
+
+
+        /**
+         * Setter for the protection status of a cell
+         * @param s representing the color of who is protecting the cell
+         */ 
+        public void setProtection(string s)
+        {
+            if (s == "user")
+                this.isProtectedByWhite = true;
+            else this.isProtectedByBlack = true;
+        }
+
+        public void resetProtection()
+        {
+            this.isProtectedByBlack = false;
+            this.isProtectedByWhite = false;
+        }
+
+
+        public bool isThreatened(string s)
+        {
+            if (s == "white" && this.isProtectedByBlack)
+                return true;
+            else if (s == "black" && this.isProtectedByWhite)
+                return true;
+            else return false;
+        }
+
 
 
         /**

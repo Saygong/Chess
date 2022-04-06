@@ -7,12 +7,11 @@
 
 
         public Piece(string own, string name)
-        {
+        {            
             owner = own;
             this.name = name;
         }
 
-        
 
         
         public virtual List<Position>? getAllowedMoves(Board board, Position start)

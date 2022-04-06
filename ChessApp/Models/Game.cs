@@ -6,7 +6,7 @@ namespace ChessApp.Models
 {
     public class Game
     {
-        private Board brd;
+        private ChessBoard brd;
         public int brd_dimension;
         private static Game? game = null;
         private bool turn;
@@ -43,7 +43,7 @@ namespace ChessApp.Models
                     if (res.getResult() == "valid")
                     {
                         turn = false;
-
+                        System.Diagnostics.Debug.WriteLine(this.brd.check());
                     }
                     return res.convert();
                 }
@@ -66,7 +66,7 @@ namespace ChessApp.Models
                 turn = true;
                 
                 Utility.MoveResult selectedMove = aiPlayer.makeStudiedMove();
-                
+                System.Diagnostics.Debug.WriteLine(this.brd.check());
                 return brd.setPiece(selectedMove.rowS, selectedMove.colS, selectedMove.rowE, selectedMove.colE, "ai").convert();
 
             }

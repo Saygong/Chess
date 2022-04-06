@@ -1,13 +1,13 @@
 ﻿
 using ChessApp.Models.Pieces.Pawns;
-using System.Linq;
-using System.Collections.Generic;
+
 
 namespace ChessApp.Models.Pieces
 {
     class PawnTwoMoves : Pawn
     {
 
+        public static int range = 2;
         public PawnTwoMoves(string own, string name) : base(own, name) { }
 
         
@@ -32,7 +32,7 @@ namespace ChessApp.Models.Pieces
             {
                 int[][] template = this.owner == "user" ? userMoveTemplates : aiMoveTemplates;
 
-                List<Position>? valids = this.getPawnMoves(board, start, template, 2);
+                List<Position>? valids = this.getPawnMoves(board, start, template, range);
                 if(valids != null)
                 {
                     return valids.Concat(eating).ToList();

@@ -5,6 +5,9 @@ namespace ChessApp.Models.Pieces
 {
     class Queen : Piece
     {
+
+
+        public static int range = 8;
         public Queen(string own, string name) : base(own, name) { }
 
 
@@ -26,7 +29,7 @@ namespace ChessApp.Models.Pieces
             List<Position>? valids = base.getAllowedMoves(board, start);
             if (valids != null)
             {
-                return Utility.getMoves(board, start, moveTemplates, board.getDimension());
+                return Utility.getMoves(board, start, moveTemplates, range);
             }
             else return null;
         }

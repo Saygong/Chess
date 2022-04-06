@@ -4,6 +4,7 @@ namespace ChessApp.Models.Pieces
 {
     class PawnOneMove : Pawn
     {
+        public static int range = 1;
 
         public PawnOneMove(string own, string name) : base(own, name) { }
 
@@ -30,7 +31,7 @@ namespace ChessApp.Models.Pieces
             if (eating != null)
             {
                 int[][] template = this.owner == "user" ? userMoveTemplates : aiMoveTemplates;
-                List<Position>? valids = this.getPawnMoves(board, start, template, 1);
+                List<Position>? valids = this.getPawnMoves(board, start, template, range);
                 if (valids != null)
                 {
                     return valids.Concat(eating).ToList();

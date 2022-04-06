@@ -142,9 +142,9 @@ namespace ChessApp.Models
                         int outcome = 0;
                         Utility.MoveResult? result = new Utility.MoveResult("valid", "none");
 
-                        if (possible.row > 2 && possible.row < 5)
+                        if (possible.row >= 2 && possible.row <= 5)
                         {
-                            if (possible.col > 2 && possible.col < 5)
+                            if (possible.col > 1 && possible.col < 6)
                                 outcome += 2;
                         }
 
