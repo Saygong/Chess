@@ -2,7 +2,7 @@
 
 namespace ChessApp.Models.Pieces
 {
-    class PawnOneMove : Pawn
+    public class PawnOneMove : Pawn
     {
         public static int range = 1;
 

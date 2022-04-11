@@ -3,7 +3,7 @@ using ChessApp.Models.Pieces;
 
 namespace ChessApp.Models.Boards
 {
-    class ChessBoard : Board
+    public class ChessBoard : Board
     {
 
         public int board_dimension = 8;
@@ -105,9 +105,9 @@ namespace ChessApp.Models.Boards
                     Position pos = board[i, j];
                     if (pos.piece != null)
                     {
-                        if (pos.piece.name == "bKing" && board[i, j].isThreatened("black"))
+                        if (pos.piece.name == "bKing" && pos.isThreatened("black"))
                             return 1;
-                        else if (pos.piece.name == "wKing" && board[i, j].isThreatened("white"))
+                        else if (pos.piece.name == "wKing" && pos.isThreatened("white"))
                             return 0;
 
                     }

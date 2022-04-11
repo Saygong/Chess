@@ -43,7 +43,7 @@ namespace ChessApp.Models
                     if (res.getResult() == "valid")
                     {
                         turn = false;
-                        System.Diagnostics.Debug.WriteLine(this.brd.check());
+                        
                     }
                     return res.convert();
                 }
@@ -55,18 +55,30 @@ namespace ChessApp.Models
         }
 
 
+        public string getPieceMoves(int rSt, int cSt)
+        {
+            Position p = this.brd.getPosition(rSt, cSt);
+            if (p.piece != null)
+            {
+                Utility.MoveResult res = new Utility.MoveResult(p.piece.getAllowedMoves(this.brd, p));
+                return res.convert();
+            }
+            else throw new ArgumentNullException("no piece");
+            
+        }
+
 
         public string makeAiMove()
         {
 
             if (this.brd != null)
             {
-                Thread.Sleep(1000);
+                Thread.Sleep(1700);
                 AI aiPlayer = AI.getInstance(this.brd);
                 turn = true;
                 
                 Utility.MoveResult selectedMove = aiPlayer.makeStudiedMove();
-                System.Diagnostics.Debug.WriteLine(this.brd.check());
+                
                 return brd.setPiece(selectedMove.rowS, selectedMove.colS, selectedMove.rowE, selectedMove.colE, "ai").convert();
 
             }

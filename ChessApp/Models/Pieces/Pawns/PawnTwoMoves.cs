@@ -4,7 +4,7 @@ using ChessApp.Models.Pieces.Pawns;
 
 namespace ChessApp.Models.Pieces
 {
-    class PawnTwoMoves : Pawn
+    public class PawnTwoMoves : Pawn
     {
 
         public static int range = 2;

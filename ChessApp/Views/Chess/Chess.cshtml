@@ -71,16 +71,55 @@ function allowDrop(ev) {
 	ev.preventDefault();
 }
 
-
+let taintedPos = [];
 function drag(ev) {
 	ev.dataTransfer.setData("text", ev.target.id);
+	let rowStart = (ev.target.id).split("+")[1][0];
+	let colStart = (ev.target.id).split("+")[1][1];
+
+	$.ajax({
+		type: "POST",
+		url: '@Url.Action("getAllowedMoves","Chess")',
+		data: { rowStart: rowStart, colStart: colStart },
+		dataType: "json",
+		success: function (res) {
+
+			for (let i of res.positions){
+
+				id = i.row + "" + i.col;
+				taintedPos.push(id);
+				let cell = document.getElementById(id);
+				
+				cell.style.cssText = "background-position: center; background-repeat: no-repeat; background-size: contain;";
+				cell.style.backgroundImage = "url('img/green.png')";
+			}
+			
+		},
+		error: function (data) {
+			console.log("An error occurred: " + JSON.stringify(data));
+		}
+
+
+	});
+
+
+}
+
+
+function clearCells(){
+	console.log(taintedPos)
+	for(let i of taintedPos){
+		let cell = document.getElementById(i);
+		cell.style.cssText = "";
+	}
+	taintedPos = [];
 }
 
 
 function drop(ev) {
 	ev.preventDefault();
 	let nameAndPosition = ev.dataTransfer.getData("text");
-	var rowStart = parseInt(((document.getElementById(nameAndPosition).id).split("+")[1])[0]);
+	let rowStart = parseInt(((document.getElementById(nameAndPosition).id).split("+")[1])[0]);
 	let colStart = ((document.getElementById(nameAndPosition).id).split("+")[1])[1];
 	let destinationName = ev.target.id;
 	let rowEnd, colEnd;
@@ -121,6 +160,7 @@ function drop(ev) {
 				}
                 
 				storeMove(rowStart, colStart, rowEnd, colEnd);
+				clearCells();
 				aiMove();
 			}
 			else {

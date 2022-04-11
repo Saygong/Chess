@@ -8,7 +8,7 @@ using ChessApp.Models.Pieces;
 
 namespace ChessApp.Models
 {
-    abstract class Board
+    public abstract class Board
     {
 
         /**

@@ -37,6 +37,15 @@ namespace ChessApp.Controllers
             else throw new ArgumentNullException("No game available");
         }
 
+        public string getAllowedMoves(int rowStart, int colStart)
+        {
+            if (thisGame != null)
+            {
+                return thisGame.getPieceMoves(rowStart, colStart);
+            }
+            else throw new ArgumentNullException("No game available");
+        }
+
 
 
 

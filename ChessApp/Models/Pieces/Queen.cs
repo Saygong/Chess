@@ -3,7 +3,7 @@ using ChessApp.Models.Boards;
 
 namespace ChessApp.Models.Pieces
 {
-    class Queen : Piece
+    public class Queen : Piece
     {
 
 

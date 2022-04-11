@@ -3,7 +3,7 @@ using ChessApp.Models.Boards;
 
 namespace ChessApp.Models.Pieces
 {
-    class Knight : Piece
+    public class Knight : Piece
     {
 
         public static int range = 1;

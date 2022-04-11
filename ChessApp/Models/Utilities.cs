@@ -4,19 +4,21 @@ using Newtonsoft.Json;
 
 namespace ChessApp.Models
 {
-    class Utility
+    public class Utility
     {
 
 
-        internal class MoveResult
+        public class MoveResult
         {
-            public string result;
-            public string description;
+            public string? result;
+            public string? description;
 
             public int rowS;
             public int colS;
             public int rowE;
             public int colE;
+
+            public List<Position>? positions;
 
 
 
@@ -44,6 +46,12 @@ namespace ChessApp.Models
                 this.colS = toCopy.colS;
                 this.rowE = toCopy.rowE;
                 this.colE = toCopy.colE;
+            }
+
+
+            public MoveResult(List<Position>? positions)
+            {
+                this.positions = positions;
             }
 
 

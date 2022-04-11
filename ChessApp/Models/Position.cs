@@ -8,7 +8,7 @@ using ChessApp.Models.Pieces;
 namespace ChessApp.Models
 {
 
-    class Position
+    public class Position
     {
 
         /**

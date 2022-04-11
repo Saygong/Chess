@@ -1,6 +1,6 @@
 ﻿namespace ChessApp.Models.Pieces
 {
-    class Piece
+   public class Piece
     {
         public string name;
         public string owner;

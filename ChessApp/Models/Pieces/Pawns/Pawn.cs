@@ -1,6 +1,6 @@
 ﻿namespace ChessApp.Models.Pieces.Pawns
 {
-    class Pawn : Piece
+    public class Pawn : Piece
     {
         public Pawn(string own, string name) : base(own, name) { }
 

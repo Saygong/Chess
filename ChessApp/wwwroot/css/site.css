@@ -69,5 +69,17 @@ body {
 }
 
 .newest-list-item {
-    background-color: lightgray
+    background-color: white;
+    animation: newest-move 4s;
+}
+
+
+@keyframes newest-move {
+    from {
+        background-color: gray;
+    }
+
+    to {
+        background-color: white;
+    }
 }

@@ -3,7 +3,7 @@ using ChessApp.Models.Boards;
 
 namespace ChessApp.Models.Pieces
 {
-    class Bishop : Piece
+    public class Bishop : Piece
     {
         public static int range = 8;
         public Bishop(string own, string name) : base(own, name) { }
