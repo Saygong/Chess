@@ -86,43 +86,24 @@ namespace ChessApp.Models
 
             Board clonedBoard = board.clone();
             List<Position> toDelete = new List<Position>();
-            if (start.Equals(new Position(5, 3)))
+            
+            foreach (Position p2 in valids)
             {
-                foreach (Position p2 in valids)
+                Position preStart = clonedBoard.getPosition(start.row, start.col).clone();
+                Position preEnd = clonedBoard.getPosition(p2.row, p2.col).clone();
+                Utility.MoveResult res = clonedBoard.setPiece(start.row, start.col, p2.row, p2.col, pl, valids);
+                Utility.debugCellsProtection(clonedBoard);
+                if (res.result == "valid" && clonedBoard.isChecked() == pl)
                 {
-                    Position preStart = clonedBoard.getPosition(start.row, start.col).clone();
-                    Position preEnd = clonedBoard.getPosition(p2.row, p2.col).clone();
-                    Utility.MoveResult res = clonedBoard.setPiece(start.row, start.col, p2.row, p2.col, pl, valids);
-                    Utility.debugBoardState(clonedBoard);
-                    if (res.result == "valid" && clonedBoard.isChecked() == pl)
-                    {
-                        toDelete.Add(p2);
-                    }
-                    rollback(clonedBoard, preStart, preEnd);
-
+                    toDelete.Add(p2);
                 }
-
-                foreach(Position illegal in toDelete)
-                {
-                    valids.Remove(illegal);
-                }
+                rollback(clonedBoard, preStart, preEnd);
 
             }
-            else
-            {
-                foreach (Position p2 in valids)
-                {
-                    Position preStart = clonedBoard.getPosition(start.row, start.col).clone();
-                    Position preEnd = clonedBoard.getPosition(p2.row, p2.col).clone();
-                    Utility.MoveResult res = clonedBoard.setPiece(start.row, start.col, p2.row, p2.col, pl, valids);
-                    
-                    if (res.result == "valid" && clonedBoard.isChecked() == pl)
-                    {
-                        rollback(clonedBoard, preStart, preEnd);
-                        valids.Remove(p2);
-                    }
 
-                }
+            foreach(Position illegal in toDelete)
+            {
+                valids.Remove(illegal);
             }
 
             

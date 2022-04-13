@@ -133,7 +133,22 @@ namespace ChessApp.Models
             }
             System.Diagnostics.Debug.WriteLine("\n\n");
         }
-       
+
+
+        public static void debugCellsProtection(Board brd)
+        {
+            for (int i = 0; i < brd.getDimension(); i++)
+            {
+                for (int j = 0; j < brd.getDimension(); j++)
+                {
+                    Position p = brd.getPosition(i, j);
+                    System.Diagnostics.Debug.Write(p.protectionPrettyPrint());
+                }
+                System.Diagnostics.Debug.WriteLine(" ");
+            }
+            System.Diagnostics.Debug.WriteLine("\n\n");
+        }
+
 
 
     }

@@ -152,6 +152,16 @@ namespace ChessApp.Models
 
         }
 
+        public string protectionPrettyPrint()
+        {
+
+            string toPrint = " (" + this.isProtectedByWhite + ", " + this.isProtectedByBlack + ") ";
+            
+            
+            return toPrint;
+        
+        }
+
 
         /**
          * Check if a position is valid. Inside the ranges [A-H] and [1-8]

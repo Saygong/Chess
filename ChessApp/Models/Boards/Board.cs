@@ -113,7 +113,7 @@ namespace ChessApp.Models
 
                             
                             updateCellsProtection(board[rowEnd, colEnd]);
-
+                            
                             return new Utility.MoveResult("valid", "none", board[rowStart, colStart], board[rowEnd, colEnd]);
                         
                         }
