@@ -8,7 +8,7 @@ using ChessApp.Models.Pieces;
 
 namespace ChessApp.Models
 {
-    public abstract class Board
+    public class Board
     {
 
         /**
@@ -65,6 +65,11 @@ namespace ChessApp.Models
             return board[row, col];
         }
 
+        public void setPosition(Position p)
+        {
+            board[p.row, p.col] = p;
+        }
+
 
         public Piece? getPiece(int row, int col)
         {
@@ -75,7 +80,7 @@ namespace ChessApp.Models
             else return null;
         }
 
-        public Utility.MoveResult setPiece(int rowStart, int colStart, int rowEnd, int colEnd, string player)
+        public Utility.MoveResult setPiece(int rowStart, int colStart, int rowEnd, int colEnd, players player, List<Position> valids)
         {
             if (this.board != null)
             {
@@ -89,19 +94,12 @@ namespace ChessApp.Models
                     if(moving.owner == player)
                     {
 
-                         List<Position>? valids = (moving).getAllowedMoves(this, board[rowStart,colStart]);
-
-                        /*
-                        System.Diagnostics.Debug.WriteLine("Tocheck: " + (this.getPosition(rowEnd, colEnd)).toString());
-                    
-                        foreach (Position pos in valids) {
-                            System.Diagnostics.Debug.WriteLine(pos.toString());
-
-                        }
-                        */
-
-                        if (valids != null && valids.Contains(board[rowEnd, colEnd]))
+                        if (valids.Count > 0 && valids.Contains(board[rowEnd, colEnd]))
                         {
+                            
+                            
+                            resetCellsProtection(board[rowEnd, colEnd]);
+                            
 
                             board[rowEnd, colEnd].piece = moving;
 
@@ -112,6 +110,10 @@ namespace ChessApp.Models
                             }
 
                             board[rowStart, colStart].piece = null;
+
+                            
+                            updateCellsProtection(board[rowEnd, colEnd]);
+
                             return new Utility.MoveResult("valid", "none", board[rowStart, colStart], board[rowEnd, colEnd]);
                         
                         }
@@ -169,5 +171,81 @@ namespace ChessApp.Models
         {
             return ROW_SIZE;
         }
+
+
+        public Board clone()
+        {
+            Board newBoard = new Board();
+            for (int i = 0; i < ROW_SIZE; i++)
+            {
+                
+                for (int j = 0; j < COLUMN_SIZE; j++)
+                {
+                    newBoard.board[i, j] = board[i, j].clone();
+                }
+            }
+            return newBoard;
+        }
+
+        private void updateCellsProtection(Position start)
+        {
+
+            if(start.piece != null)
+            {
+                List<Position> toReset = start.piece.getCoverage();
+
+                foreach(Position p in toReset)
+                {
+                    p.resetProtection(start.piece.owner);
+                }
+
+                List<Position> toAdjourn = start.piece.getAllowedMoves(this, start);
+                
+                foreach (Position p in toAdjourn)
+                {
+                    p.setProtection(start.piece.owner);
+                }
+                start.piece.setCoverage(toAdjourn);
+
+            }
+            
+        }
+
+        private void resetCellsProtection(Position start)
+        {
+            if(start.piece != null)
+            {
+                
+                foreach(Position p in start.piece.getCoverage())
+                {
+                    p.resetProtection(start.piece.owner);
+                }
+            }
+        }
+
+
+        /** Return players.USER if White is checked, players.AI if Black is checked, null if neither. */
+        public players? isChecked()
+        {
+            
+            for (int i = 0; i < ROW_SIZE; i++)
+            {
+                for (int j = 0; j < COLUMN_SIZE; j++)
+                {
+                    Position pos = board[i, j];
+                    if (pos.piece != null)
+                    {
+                        if (pos.piece.name == "bKing" && pos.isThreatened())
+                            return players.AI;
+                        else if (pos.piece.name == "wKing" && pos.isThreatened())
+                            return players.USER;
+
+                    }
+                }
+            }
+            return null;
+        }
+
+
     }
 }

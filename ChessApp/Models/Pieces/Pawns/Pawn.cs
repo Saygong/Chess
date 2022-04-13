@@ -2,7 +2,7 @@
 {
     public class Pawn : Piece
     {
-        public Pawn(string own, string name) : base(own, name) { }
+        public Pawn(players own, string name) : base(own, name) { }
 
 
         private readonly static int[][] userEatingTemplate = new int[][]
@@ -19,25 +19,19 @@
 
 
 
-        public override List<Position>? getAllowedMoves(Board board, Position start) 
+        public override List<Position> checkAllowedMoves(Board board, Position start) 
         {
 
-            List<Position>? valids = base.getAllowedMoves(board, start);
-            if (valids != null)
-            {
+            List<Position> valids = base.checkAllowedMoves(board, start);
+           
+            int[][] template = this.owner == players.USER ? userEatingTemplate : aiEatingTemplate;
 
-
-                int[][] template = this.owner == "user" ? userEatingTemplate : aiEatingTemplate;
-
-
-                return this.getEatingMoves(board, start, template);
-            }
-            else return null;
-
+            return this.getEatingMoves(board, start, template);
+            
         }
 
 
-        private List<Position>? getEatingMoves(Board brd, Position start, int[][] template)
+        private List<Position> getEatingMoves(Board brd, Position start, int[][] template)
         {
 
             var ret = new List<Position>();

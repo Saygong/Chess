@@ -99,7 +99,6 @@ function drag(ev) {
 			console.log("An error occurred: " + JSON.stringify(data));
 		}
 
-
 	});
 
 
@@ -133,8 +132,6 @@ function drop(ev) {
 		colEnd = destinationName[1];
 	}
 
-	
-
 	$.ajax({
 		type: "POST",
 		url: '@Url.Action("validateMove","Chess")',
@@ -146,7 +143,6 @@ function drop(ev) {
 				
 				let name = (document.getElementById(nameAndPosition).id).split("+")[0];
 				
-
 				let container = ev.target.parentNode;
 				
 				if(container.id == rowEnd.toString()+colEnd.toString()){
@@ -164,14 +160,12 @@ function drop(ev) {
 				aiMove();
 			}
 			else {
-				//showError()
 				alert(res.description);
 			}
 		},
 		error: function (data) {
 			console.log("An error occurred: " + JSON.stringify(data));
 		}
-
 
 	});
 }
@@ -188,7 +182,6 @@ function aiMove() {
 			if (res.result == "valid") {
 				
 				moveAndRename(res.rowS.toString(), res.colS.toString(), res.rowE.toString(), res.colE.toString());
-				
 			}
 			else {
 				alert(res.description);
