@@ -6,10 +6,11 @@ namespace ChessApp.Models
 {
     public class Game
     {
+        private static Game? game = null;
         private ChessBoard brd;
         public int brd_dimension;
-        private static Game? game = null;
         private bool turn;
+        private List<Position> allowedMoves;
 
 
         private Game()
@@ -18,6 +19,7 @@ namespace ChessApp.Models
             this.brd = new ChessBoard();
             this.turn = brd.isUserWhite ? true : false;
             this.brd_dimension = brd.getDimension();
+            this.allowedMoves = new List<Position>();
         }
 
 
@@ -39,7 +41,8 @@ namespace ChessApp.Models
             {
                 if (turn)
                 {
-                    Utility.MoveResult res = brd.setPiece(rowStart, colStart, rowEnd, colEnd, "user");
+                    
+                    Utility.MoveResult res = brd.setPiece(rowStart, colStart, rowEnd, colEnd, players.USER, allowedMoves);
                     if (res.getResult() == "valid")
                     {
                         turn = false;
@@ -57,10 +60,13 @@ namespace ChessApp.Models
 
         public string getPieceMoves(int rSt, int cSt)
         {
+
+            this.allowedMoves.Clear();
             Position p = this.brd.getPosition(rSt, cSt);
             if (p.piece != null)
             {
                 Utility.MoveResult res = new Utility.MoveResult(p.piece.getAllowedMoves(this.brd, p));
+                this.allowedMoves = res.positions;
                 return res.convert();
             }
             else throw new ArgumentNullException("no piece");
@@ -76,13 +82,13 @@ namespace ChessApp.Models
                 Thread.Sleep(1700);
                 AI aiPlayer = AI.getInstance(this.brd);
                 turn = true;
-                
+                allowedMoves.Clear();
                 Utility.MoveResult selectedMove = aiPlayer.makeStudiedMove();
-                
-                return brd.setPiece(selectedMove.rowS, selectedMove.colS, selectedMove.rowE, selectedMove.colE, "ai").convert();
+                allowedMoves.Add(this.brd.getPosition(selectedMove.rowE, selectedMove.colE));
+                return brd.setPiece(selectedMove.rowS, selectedMove.colS, selectedMove.rowE, selectedMove.colE, players.AI, allowedMoves).convert();
 
             }
-            else throw new ArgumentNullException("Board not initiated");
+            else throw new ArgumentNullException("Board not initiated"); 
 
         }
 
@@ -102,18 +108,7 @@ namespace ChessApp.Models
 
 
 
-        public void debugBoardState()
-        {
-            for(int i = 0; i < this.brd_dimension; i++)
-            {
-                for(int j = 0; j < this.brd_dimension; j++)
-                {
-                    Position p = this.brd.getPosition(i, j);
-                    System.Diagnostics.Debug.Write(p.prettyPrint());
-                }
-                System.Diagnostics.Debug.WriteLine(" ");
-            }
-        }
+        
 
 
 

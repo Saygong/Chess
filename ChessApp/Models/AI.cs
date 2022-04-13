@@ -20,7 +20,7 @@ namespace ChessApp.Models
                     Position p = brd.getPosition(i, j);
                     if (p.piece != null)
                     {
-                        if (p.piece.owner == "ai")
+                        if (p.piece.owner == players.AI)
                             pieceSet.Add(p);
                     }
                 }
@@ -51,7 +51,7 @@ namespace ChessApp.Models
                     Position p = brd.getPosition(i, j);
                     if (p.piece != null)
                     {
-                        if (p.piece.owner == "ai")
+                        if (p.piece.owner == players.AI)
                             newPieceSet.Add(p);
                     }
                 }
@@ -69,7 +69,6 @@ namespace ChessApp.Models
         }
 
 
-
         public Utility.MoveResult makeRandomMove()
         {
             updatePieceSet();
@@ -85,14 +84,14 @@ namespace ChessApp.Models
                 col = (new Random()).Next(0, 7);
                 p = board.getPosition(row, col);
 
-                if (p.piece != null && p.piece.owner != "user")
+                if (p.piece != null && p.piece.owner != players.USER)
                 {
                     List<Position>? valid = p.piece.getAllowedMoves(board, p);
                     if (valid != null && valid.Count > 0)
                     {
                         int selection = (new Random()).Next(0, valid.Count()-1);
                         Position ending = valid[selection];
-                        Utility.MoveResult res = board.setPiece(row, col, ending.row, ending.col, "ai");
+                        Utility.MoveResult res = board.setPiece(row, col, ending.row, ending.col, players.AI, valid);
                         if (res.result == "valid")
                         {
                             res.rowS = p.row;
@@ -103,13 +102,9 @@ namespace ChessApp.Models
                             return res;
                         }
 
-                        
                     }
-
-
                 }
                 i++;
-
 
             }
             return new Utility.MoveResult("invalid", "no moves found");
@@ -153,7 +148,7 @@ namespace ChessApp.Models
                         result.rowE = possible.row;
                         result.colE = possible.col;
 
-                        if (possible.piece != null && possible.piece.owner == "user")
+                        if (possible.piece != null && possible.piece.owner == players.USER)
                         {
                             switch (possible.piece.name)
                             {

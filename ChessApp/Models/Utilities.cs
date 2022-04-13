@@ -10,15 +10,15 @@ namespace ChessApp.Models
 
         public class MoveResult
         {
-            public string? result;
-            public string? description;
+            public string result = "none";
+            public string description = "none";
 
             public int rowS;
             public int colS;
             public int rowE;
             public int colE;
 
-            public List<Position>? positions;
+            public List<Position> positions = new List<Position>();
 
 
 
@@ -51,7 +51,10 @@ namespace ChessApp.Models
 
             public MoveResult(List<Position>? positions)
             {
-                this.positions = positions;
+                if( positions != null)
+                {
+                    this.positions = positions;
+                }
             }
 
 
@@ -117,7 +120,20 @@ namespace ChessApp.Models
         }
 
 
-
+        public static void debugBoardState(Board brd)
+        {
+            for (int i = 0; i < brd.getDimension(); i++)
+            {
+                for (int j = 0; j < brd.getDimension(); j++)
+                {
+                    Position p = brd.getPosition(i, j);
+                    System.Diagnostics.Debug.Write(p.prettyPrint());
+                }
+                System.Diagnostics.Debug.WriteLine(" ");
+            }
+            System.Diagnostics.Debug.WriteLine("\n\n");
+        }
+       
 
 
     }

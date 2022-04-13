@@ -6,7 +6,7 @@ namespace ChessApp.Models.Pieces
     public class Bishop : Piece
     {
         public static int range = 8;
-        public Bishop(string own, string name) : base(own, name) { }
+        public Bishop(players own, string name) : base(own, name) { }
 
         private readonly static int[][] moveTemplates = new int[][]
         {
@@ -17,15 +17,13 @@ namespace ChessApp.Models.Pieces
 
         };
 
-        public override List<Position>? getAllowedMoves(Board board, Position start)
+        public override List<Position> checkAllowedMoves(Board board, Position start)
         {
 
-            List<Position>? valids = base.getAllowedMoves(board, start);
-            if (valids != null)
-            {
-                return Utility.getMoves(board, start, moveTemplates, range);
-            }
-            else return null;
+            List<Position> valids = base.checkAllowedMoves(board, start);
+            
+            return Utility.getMoves(board, start, moveTemplates, range);
+            
         }
 
 
