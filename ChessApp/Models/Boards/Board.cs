@@ -1,6 +1,6 @@
 ﻿
 using ChessApp.Models.Pieces;
-
+using ChessApp.Models.Pieces.Pawns;
 
 //
 // Created by andrea on 23/01/2022.
@@ -112,8 +112,8 @@ namespace ChessApp.Models
                             board[rowStart, colStart].piece = null;
 
                             
-                            updateCellsProtection(board[rowEnd, colEnd]);
-                            
+                            updateCellsProtection(board[rowEnd, colEnd], valids);
+                            //Utility.debugCellsProtection(this);
                             return new Utility.MoveResult("valid", "none", board[rowStart, colStart], board[rowEnd, colEnd]);
                         
                         }
@@ -145,7 +145,7 @@ namespace ChessApp.Models
                     Piece? destination = board[destRow, destCol].piece;
                     if (destination != null)
                     {
-                        if (destination.owner.Equals(toMove.owner))
+                        if (destination.owner == toMove.owner)
                         {
                             return false;
                         }
@@ -187,28 +187,36 @@ namespace ChessApp.Models
             return newBoard;
         }
 
-        private void updateCellsProtection(Position start)
+        protected void updateCellsProtection(Position start, List<Position> valids)
         {
 
-            if(start.piece != null)
+            if (start.piece != null)
             {
-                List<Position> toReset = start.piece.getCoverage();
+                List<Position> toReset = start.piece.getActualCoverage();
 
-                foreach(Position p in toReset)
+                foreach (Position p in toReset)
                 {
                     p.resetProtection(start.piece.owner);
                 }
 
-                List<Position> toAdjourn = start.piece.getAllowedMoves(this, start);
-                
+                List<Position> toAdjourn;
+                if (typeof(Pawn).IsInstanceOfType(this))
+                {
+                    toAdjourn = Pawn.getProtectedCells(this, start, start.piece.owner);
+                }
+                else
+                {
+                    toAdjourn = valids;
+                }
+
                 foreach (Position p in toAdjourn)
                 {
                     p.setProtection(start.piece.owner);
                 }
-                start.piece.setCoverage(toAdjourn);
+                start.piece.setActualCoverage(toAdjourn);
 
             }
-            
+
         }
 
         private void resetCellsProtection(Position start)
@@ -216,7 +224,7 @@ namespace ChessApp.Models
             if(start.piece != null)
             {
                 
-                foreach(Position p in start.piece.getCoverage())
+                foreach(Position p in start.piece.getActualCoverage())
                 {
                     p.resetProtection(start.piece.owner);
                 }

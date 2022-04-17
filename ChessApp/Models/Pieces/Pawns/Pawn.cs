@@ -59,6 +59,38 @@
         }
 
 
+        public static List<Position> getProtectedCells(Board brd, Position start, players pl)
+        {
+
+            int[][] tmplt = (pl == players.USER) ? userEatingTemplate : aiEatingTemplate;
+
+            var ret = new List<Position>();
+
+            foreach (var mult in tmplt)
+            {
+                for (var radius = 1; radius <= 1; radius++)
+                {
+
+                    var deltaX = radius * mult[0];
+                    var deltaY = radius * mult[1];
+                    
+                    if (Position.isValidPosition(start.row + deltaX, start.col + deltaY))
+                    {
+                        Position p = brd.getPosition(start.row + deltaX, start.col + deltaY);
+                        if (p.piece != null && p.piece.owner != pl)
+                        {
+                            ret.Add(p);
+                        }
+                    }
+                }
+            }
+            return ret;
+
+        }
+
+
+
+
         public List<Position> getPawnMoves(Board board, Position start, int[][] moveTemplates, int range)
         {
 

@@ -108,6 +108,7 @@ namespace ChessApp.Models
          * @param p
          * @return true if positions are equals, false otherwise
          */
+
         public override bool Equals(object obj) {
             
             return this.equals(obj as Position);

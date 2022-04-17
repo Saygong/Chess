@@ -1,4 +1,5 @@
-﻿
+﻿using ChessApp.Models.Pieces.Pawns;
+
 namespace ChessApp.Models.Pieces
 {
 
@@ -38,16 +39,14 @@ namespace ChessApp.Models.Pieces
         
         public List<Position> getAllowedMoves(Board board, Position start)
         {
-            
-            if (board.isChecked() != null)
+            players? check = board.isChecked();
+            if (check != null)
             {
                 CheckHandler handler = new CheckHandler(board, this.owner);
-                List<Position> illegal = handler.illegalMoves(board);
+
                 List<Position> valids = this.checkAllowedMoves(board, start);
-                foreach(Position p in illegal)
-                {
-                    valids.Remove(p);
-                }
+                handler.avoidIllegalMoves(board, valids);
+                
                 this.coverage = valids;
                 return valids;
             }
@@ -55,15 +54,18 @@ namespace ChessApp.Models.Pieces
             
         }
 
-        public List<Position> getCoverage()
+        public List<Position> getActualCoverage()
         {
             return this.coverage;
         }
 
-        public void setCoverage(List<Position> c)
+        public void setActualCoverage(List<Position> c)
         {
             this.coverage = c;
         }
+
+
+        
 
 
         /**

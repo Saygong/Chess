@@ -63,6 +63,15 @@ namespace ChessApp.Models.Boards
             this.board[7,3].piece = new Queen(players.USER, userPrefix + "Queen");
             this.board[7,4].piece = new King(players.USER, userPrefix + "King");
 
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    //this.updateCellsProtection(board[i, j]);
+                }
+            }
+
+
         }
 
         

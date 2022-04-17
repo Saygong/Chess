@@ -45,17 +45,16 @@ namespace ChessApp.Models
         }
         
        
-        public List<Position> illegalMoves(Board board)
+        public void avoidIllegalMoves(Board board, List<Position> all)
         {
            
             clonedBoard = board.clone();
-            List<Position> moves = new List<Position>();
+            List<Position> toDelete = new List<Position>();
             foreach(Position p1 in this.pieces)
             {
                 // sure that p.piece != null but i need to delete warnings
                 if(p1.piece != null)
                 {
-                    List<Position> all = p1.piece.checkAllowedMoves(board, p1);
 
                     if (all.Count > 0)
                     {
@@ -68,7 +67,7 @@ namespace ChessApp.Models
 
                             if (res.result == "valid" && clonedBoard.isChecked() == p1.piece.owner)
                             {
-                                moves.Add(p2);
+                                toDelete.Add(p2);
                             }
                             rollback(clonedBoard, preStart, preEnd);
                             
@@ -77,7 +76,10 @@ namespace ChessApp.Models
                 }
                 
             }
-            return moves;
+            foreach(Position del in toDelete)
+            {
+                all.Remove(del);
+            }
 
         }
     
@@ -92,7 +94,7 @@ namespace ChessApp.Models
                 Position preStart = clonedBoard.getPosition(start.row, start.col).clone();
                 Position preEnd = clonedBoard.getPosition(p2.row, p2.col).clone();
                 Utility.MoveResult res = clonedBoard.setPiece(start.row, start.col, p2.row, p2.col, pl, valids);
-                Utility.debugCellsProtection(clonedBoard);
+                //Utility.debugCellsProtection(clonedBoard);
                 if (res.result == "valid" && clonedBoard.isChecked() == pl)
                 {
                     toDelete.Add(p2);
